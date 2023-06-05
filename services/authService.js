@@ -1,15 +1,15 @@
 const User = require("../models/userSchema");
 const nodemailer = require("nodemailer");
-const helperService = require("../services/helperService");
-exports.createNewUser = async function (
+
+const createNewUser = async function (
   name,
   email,
   password,
-  phoneNumber,
-  role
+  role,
+  phoneNumber
 ) {
   try {
-    const newUser = new User(name, email, phoneNumber, role, password);
+    const newUser = new User({ name, email, phoneNumber, role, password });
     const result = await newUser.save();
     const userId = result._id;
     return userId;
@@ -18,7 +18,7 @@ exports.createNewUser = async function (
   }
 };
 
-exports.sendotp = async (email, otp) => {
+const sendotp = async (email, otp) => {
   try {
     await User.updateOne({ email }, { otp }, { upsert: true });
     let transporter = nodemailer.createTransport({
@@ -75,7 +75,7 @@ const generateToken = async function (email) {
   }
 };
 
-exports.logout = async (req, res) => {
+const logout = async (req, res) => {
   try {
     let loggedInUser = req.loggedInUser;
     await auth_service.logout(loggedInUser._id);
@@ -89,4 +89,7 @@ module.exports = {
   updateToken,
   generateToken,
   verifyToken,
+  createNewUser,
+  logout,
+  sendotp,
 };

@@ -2,15 +2,16 @@ const authService = require("../services/authService");
 const helperService = require("../services/helperService");
 exports.createUser = async function (req, res) {
   try {
-    console.log("in auth controller");
+    console.log("in auth controller dee s");
     const { name, email, password, role, phoneNumber } = req.body;
-    let userId = await authService.createNewUser({
+    let userId = await authService.createNewUser(
       name,
       email,
       password,
       role,
-      phoneNumber,
-    });
+      phoneNumber
+    );
+    console.log(userId);
     res.status(201).send({
       message:
         "Please verify your email or phoneNumber to activate your Account ",
@@ -25,9 +26,9 @@ exports.generateOTP = async function (req, res) {
   try {
     let { email } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    email = "vaibhavtezan@gmail.com";
-    await authService.sendotp({ email, otp });
-    res.status(200).send({ message: error.message });
+
+    await authService.sendotp(email, otp);
+    res.status(200).send("otp sended successfully");
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
@@ -58,7 +59,7 @@ exports.verifyOtpByMail = async function (req, res) {
 exports.userLogin = async function (req, res) {
   try {
     const { email, password } = req.body;
-    const user = await helpers.getUserByEmail(email);
+    const user = await helperService.getUserByEmail(email);
     if (!user) throw new Error("User does not exist");
     await helperService.verifyPassword(`${password}`, user.password);
     const Token = await helperService.generateToken(email);

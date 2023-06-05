@@ -1,22 +1,22 @@
+
+
 POST http://localhost:3004/user/signUp
 Content-Type: application/json
 
 {
     "name":"vaibhav",
-    "email":"vaibhav@gmail.com",
+    "email":"viranshk7@gmail.com",
     "password":"1234567",
     "role":"Admin",
     "phoneNumber":"8930485009"
 }
 
-
 ###
-
 POST http://localhost:3004/user/generateOtp
 Content-Type: application/json
 
 {
-    "email":"vaibhavtezan@gmail.com"
+    "email":"viranshk7@gmail.com"
 }
 
 ###
@@ -24,8 +24,19 @@ POST http://localhost:3004/user/verifyOtp
 Content-Type: application/json
 
 {
-    "email":"vaibhavtezan@gmail.com",
-    "otp":"129332"
+    "email":"viranshk7@gmail.com",
+    "otp":"318779"
+}
+
+
+
+###
+POST http://localhost:3004/user/login
+Content-Type: application/json
+
+{
+    "email":"viranshk7@gmail.com",
+    "password":"1234567"
 }
 
 

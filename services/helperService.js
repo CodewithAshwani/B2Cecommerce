@@ -15,6 +15,7 @@ const getUserByEmail = async function (email) {
   try {
     let result = await User.findOne({ email: email });
     if (!result) throw new Error("Invalid Email!!!!!!!");
+    console.log("email is verified");
     return result;
   } catch (error) {
     throw error;
@@ -35,7 +36,7 @@ const verifyToken = async function (token) {
 const verifyOtp = async function (email, otp) {
   try {
     const user = await getUserByEmail(email);
-    console.log(user.otp);
+    console.log(user);
     if (!(user.otp == otp)) throw new Error("invalid otp");
     console.log("otp is verified");
     return user;
@@ -59,6 +60,13 @@ const generateToken = async function (email) {
   } catch (err) {
     throw err;
   }
+};
+
+//verify password
+const verifyPassword = async function (password, userPassword) {
+  const checkPassword = await bcrypt.compare(password, userPassword);
+  if (!checkPassword) throw new Error("Invalid credentials");
+  return checkPassword;
 };
 
 module.exports = {
