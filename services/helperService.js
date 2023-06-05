@@ -1,5 +1,6 @@
 const User = require("../models/userSchema");
-
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 //if user is inactive ,change status
 const makeUserActive = async function (email) {
   console.log("In helper service");
@@ -76,4 +77,5 @@ module.exports = {
   verifyOtp,
   makeUserActive,
   getUserByEmail,
+  verifyPassword,
 };
