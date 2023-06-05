@@ -27,17 +27,28 @@ const userSchema = new mongoose.Schema({
     minlength: 10,
     maxlength: 10,
   },
-  isVerified: {
+  isActive: {
     type: Boolean,
     default: false,
   },
   token: {
     type: String,
-    required: true,
   },
-  cart: [{ type: Schema.Types.objectId, ref: "Cart", default: [] }],
+  otp: {
+    type: String,
+  },
+  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
+});
 
-  timestamps: true,
+userSchema.pre("save", async function (next) {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 const User = mongoose.model("User", userSchema);

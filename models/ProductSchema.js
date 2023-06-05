@@ -29,7 +29,6 @@ const productSchema = new mongoose.Schema({
     required: true,
     ref: "User",
   },
-  timestamps: true,
 });
 
 const Product = mongoose.model("Product", productSchema);
