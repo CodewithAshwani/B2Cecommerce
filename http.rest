@@ -41,6 +41,12 @@ Content-Type: application/json
 
 
 ###
+POST http://localhost:3004/user/login/token
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiJ9.dmlyYW5zaGs3QGdtYWlsLmNvbQ.a0zjz2vMZJDmzM_deJq7pLywteR2x_vxWAmij5Qpb8Q
+
+
+###
 POST http://localhost:3004/createProduct
 Content-Type: application/json
 
