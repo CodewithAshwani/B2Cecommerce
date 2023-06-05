@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    lowercase: true,
   },
   password: {
     type: String,
@@ -34,7 +35,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cart: [{ type: Schema.Types.objectId, ref: "Cart" }],
+  cart: [{ type: Schema.Types.objectId, ref: "Cart", default: [] }],
+
   timestamps: true,
 });
 
