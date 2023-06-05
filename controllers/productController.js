@@ -23,8 +23,9 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     const result = await ProductServcie.getAllProducts();
-    return result;
+    res.status(200).send(result);
   } catch (error) {
+    console.log(error);
     throw { message: error.message };
   }
 };
