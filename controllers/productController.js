@@ -2,18 +2,19 @@ const ProductServcie = require("../services/PrdoctService");
 
 exports.createProduct = async (req, res) => {
   try {
-    const { Title, Description, Price, Availability, Category } = req.body;
+    const { Title, Description, Price, Availabilty, Category } = req.body;
     const owner = req.params.id;
-    const result = await ProductServcie.createProduct(
+    console.log("in product controller");
+    const result = await ProductServcie.createProduct({
       Title,
       Description,
       Price,
-      Availability,
+      Availabilty,
       Category,
-      owner
-    );
-    console.log(result);
-    res.status(201).send("Product created succesfully", result);
+      owner,
+    });
+
+    res.send(201, result);
   } catch (error) {
     throw { message: error.message };
   }

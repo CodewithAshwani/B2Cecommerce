@@ -47,14 +47,22 @@ Authorization: bearer eyJhbGciOiJIUzI1NiJ9.dmlyYW5zaGs3QGdtYWlsLmNvbQ.a0zjz2vMZJ
 
 
 ###
-POST http://localhost:3004/createProduct
+POST http://localhost:3004/product/createProduct/647dd15e9c511f81c38e8681
 Content-Type: application/json
 
 {
     "Title":"shampoo",
-    "Description":"this is good ahampoo",
+    "Description":"this is good shampoo",
     "Price":200,
     "Availabilty":true,
     "Category":"Dairy"
+}
+###
+
+
+GET http://localhost:3004/product/getAllProducts
+Content-Type: application/json
+{
+    
 }
 

@@ -4,29 +4,33 @@ exports.createProduct = async (
   Title,
   Description,
   Price,
-  Availability,
+  Availabilty,
   Category,
   owner
 ) => {
   try {
+    console.log("in service product");
     const NewProduct = new Product(
       Title,
       Description,
       Price,
-      Availability,
+      Availabilty,
       Category,
       owner
     );
+
     await NewProduct.save();
+    console.log("newproduct is done here");
     return NewProduct;
   } catch (error) {
+    // console.log(error);
     throw { message: error.message };
   }
 };
 
 exports.getAllProducts = async () => {
   try {
-    const Products = await Product.find();
+    const Products = await Product.find({});
     return Products;
   } catch (error) {
     throw { message: error.message };
