@@ -20,12 +20,11 @@ exports.addToCart = async function (req, res) {
   try {
     const userId = req.params.userid;
     const { productId, quantity } = req.body;
-    console.log("in controller", userId, productId, quantity);
+    console.log(userId, productId, quantity);
+
     const cart = await cartService.addToCart(userId, productId, quantity);
-    res
-      .status(200)
-      .json({ message: "Product added to cart successfully", cart });
+    res.status(200).json({ message: "Product added to cart successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

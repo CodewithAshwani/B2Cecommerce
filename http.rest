@@ -87,5 +87,5 @@ Content-Type: application/json
 
 {
     "productId":"647e188b0f974607028f7dd7",
-    "quantity":2
+    "quantity":8
 }

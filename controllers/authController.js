@@ -37,7 +37,7 @@ exports.generateOTP = async function (req, res) {
 exports.verifyOtpByMail = async function (req, res) {
   try {
     const { email, otp } = req.body;
-    const user = await helperService.getUserByEmail(email);
+    const user = await helperService.getUserfromEmail(email);
     console.log("user got ", user);
     if (user.isActive) {
       return res.status(200).send({
@@ -59,7 +59,7 @@ exports.verifyOtpByMail = async function (req, res) {
 exports.userLogin = async function (req, res) {
   try {
     const { email, password } = req.body;
-    const user = await helperService.getUserByEmail(email);
+    const user = await helperService.getUserfromEmail(email);
     if (!user) throw new Error("User does not exist");
     await helperService.verifyPassword(`${password}`, user.password);
     const Token = await helperService.generateToken(email);

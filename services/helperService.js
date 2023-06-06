@@ -3,10 +3,9 @@ const Product = require("../models/ProductSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-//if user is inactive ,change status
 const makeUserActive = async function (email) {
   console.log("In helper service");
-  const user = await getUserByEmail(email);
+  const user = await getUserfromEmail(email);
   let result = await User.findOneAndUpdate(
     { email: user.email },
     { isActive: true }
@@ -14,7 +13,7 @@ const makeUserActive = async function (email) {
   return result;
 };
 
-const getUserByEmail = async function (email) {
+const getUserfromEmail = async function (email) {
   try {
     let result = await User.findOne({ email: email });
     if (!result) throw new Error("Invalid Email!!!!!!!");
@@ -25,7 +24,6 @@ const getUserByEmail = async function (email) {
   }
 };
 
-//verify token
 const verifyToken = async function (token) {
   console.log("In auth service");
   const getEmailByToken = await User.findOne({ token });
@@ -35,14 +33,24 @@ const verifyToken = async function (token) {
   return result;
 };
 
-//verify otp
 const verifyOtp = async function (email, otp) {
   try {
-    const user = await getUserByEmail(email);
+    const user = await getUserfromEmail(email);
     console.log(user);
     if (!(user.otp == otp)) throw new Error("invalid otp");
     console.log("otp is verified");
     return user;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const generateToken = async function (email) {
+  try {
+    const secretkety = process.env.SECRETKEY;
+    const token = await jwt.sign(email, secretkety);
+    console.log(token);
+    return token;
   } catch (err) {
     throw err;
   }
@@ -55,30 +63,17 @@ const updateToken = async function (email1, Token) {
   return result;
 };
 
-const generateToken = async function (email) {
-  try {
-    const secretkety = process.env.SECRETKEY;
-    const token = await jwt.sign(email, secretkety);
-    return token;
-  } catch (err) {
-    throw err;
-  }
-};
-
-//verify password
 const verifyPassword = async function (password, userPassword) {
   const checkPassword = await bcrypt.compare(password, userPassword);
   if (!checkPassword) throw new Error("Invalid credentials");
   return checkPassword;
 };
 
-///for admin
 const verifyUser = async function (id) {
   try {
     console.log("in service helper");
     const user = await User.find({ _id: id });
-    if (!user) throw new Error("Invalid id");
-    console.log(user);
+    if (!user) throw { message: error.message };
     return user;
   } catch (error) {
     throw { message: error.message };
@@ -95,13 +90,14 @@ const ProductExists = async function (id) {
     throw { message: error.message };
   }
 };
+
 module.exports = {
   updateToken,
   generateToken,
   verifyToken,
   verifyOtp,
   makeUserActive,
-  getUserByEmail,
+  getUserfromEmail,
   verifyPassword,
   verifyUser,
   ProductExists,
