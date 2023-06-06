@@ -1,5 +1,6 @@
 const User = require("../models/userSchema");
 const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 
 const createNewUser = async function (
   name,
@@ -79,7 +80,7 @@ const logout = async (token) => {
   console.log("logout service");
   const user = await User.findOne({ token: token });
   if (!user) {
-    throw new Error("User not found");
+    throw new Error("User not found , please login with credential for token");
   }
   const result = await User.findOneAndUpdate(
     { _id: user._id },

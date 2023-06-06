@@ -78,20 +78,22 @@ exports.userLogin = async function (req, res) {
 
 exports.UserloginViaToken = async function (req, res) {
   try {
-    const token = req.headers.authorization.split(" ")[1];
-    await helperService.verifyToken(token);
+    const token = req.headers.authorization.split(" ")[0];
+    console.log(token);
+    await authService.verifyToken(token);
     return res.status(200).send({ message: "User Logged in Successfully" });
   } catch (err) {
+    console.log(err);
     return res.status(400).send({ message: err.message });
   }
 };
 
 exports.logout = async (req, res) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(" ")[0];
     console.log(token);
     await authService.logout(token);
-    res.status(200).send({ message: "Logged out successfully" });
+    res.status(200).send({ message: "user Logged out successfully" });
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: error.message });

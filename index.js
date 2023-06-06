@@ -14,6 +14,9 @@ const cart_routes = require("./routes/cartRoutes");
 const placeOrder = require("./routes/orderRoutes");
 const PORT = process.env.PORT || 3001;
 
+app.get("/", () => {
+  console.log("heelo world");
+});
 app.use("/user", auth_routes);
 app.use("/product", product_routes);
 app.use("/cart", cart_routes);

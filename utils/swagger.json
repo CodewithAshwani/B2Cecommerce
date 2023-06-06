@@ -120,7 +120,7 @@
         "parameters": [
           {
             "name": "Authorization",
-            "in": "body",
+            "in": "header",
             "description": "Token for authentication",
             "required": true,
             "schema": {
@@ -131,6 +131,35 @@
         "responses": {
           "200": {
             "description": "login using token successfully"
+          },
+          "400": {
+            "description": "Acess denied !! Invalid token"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+
+    "/user/logout": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Logout user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token for user logout",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user logout  successfully"
           },
           "400": {
             "description": "Acess denied !! Invalid token"

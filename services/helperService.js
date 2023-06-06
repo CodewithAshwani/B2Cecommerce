@@ -24,15 +24,6 @@ const getUserfromEmail = async function (email) {
   }
 };
 
-const verifyToken = async function (token) {
-  console.log("In auth service");
-  const getEmailByToken = await User.findOne({ token });
-  if (!getEmailByToken) throw new Error("access denied !! Invalid Token");
-  const result = await jwt.verify(token, process.env.SECRETKEY);
-  if (result !== getEmailByToken.email) throw new Error("Invalid token");
-  return result;
-};
-
 const verifyOtp = async function (email, otp) {
   try {
     const user = await getUserfromEmail(email);
@@ -94,7 +85,6 @@ const ProductExists = async function (id) {
 module.exports = {
   updateToken,
   generateToken,
-  verifyToken,
   verifyOtp,
   makeUserActive,
   getUserfromEmail,
