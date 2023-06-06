@@ -76,21 +76,10 @@ const generateToken = async function (email) {
   }
 };
 
-const logout = async (req, res) => {
-  try {
-    let loggedInUser = req.loggedInUser;
-    await auth_service.logout(loggedInUser._id);
-    res.status(200).send({ message: "Logged out successfully" });
-  } catch (error) {
-    handleErrors(error, next);
-  }
-};
-
 module.exports = {
   updateToken,
   generateToken,
   verifyToken,
   createNewUser,
-  logout,
   sendotp,
 };

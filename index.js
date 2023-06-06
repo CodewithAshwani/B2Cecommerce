@@ -4,6 +4,8 @@ app.use(express.json());
 require("dotenv").config();
 const dbutils = require("./utils/Dbutils");
 dbutils.initDB();
+const cors = require(cors);
+app.use(cors());
 
 const auth_routes = require("./routes/authRoutes");
 const product_routes = require("./routes/product_routes");
