@@ -109,6 +109,6 @@ Content-Type: application/json
 {
     "Address":"gurgaon"
 }
-
-get http://localhost:3004/orders/647efe460d0caac65fe57f85/getOrder
+###
+GET  http://localhost:3004/orders/647efe460d0caac65fe57f85/getOrder
 Content-Type: application/json

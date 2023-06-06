@@ -10,7 +10,7 @@ const createOrder = async function (userId, Address) {
     const createOrder = new Order({
       customer: userId,
       Address,
-      items: cart._id,
+      items: cart.items,
       status,
       totalAmount: cart.totalAmount,
     });
@@ -22,4 +22,15 @@ const createOrder = async function (userId, Address) {
   }
 };
 
-module.exports = { createOrder };
+const getOrder = async function (userId) {
+  try {
+    console.log("in service");
+    const order = await Order.findOne({ customer: userId });
+    return order;
+  } catch (error) {
+    console.log(error);
+    throw { message: error.message };
+  }
+};
+
+module.exports = { createOrder, getOrder };

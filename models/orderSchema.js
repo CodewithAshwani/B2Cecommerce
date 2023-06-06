@@ -11,11 +11,13 @@ const orderSchema = new mongoose.Schema({
     required: true,
     maxlength: 300,
   },
-  items: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Cart",
-    required: true,
-  },
+  items: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cart",
+      required: true,
+    },
+  ],
   status: {
     type: String,
     enum: ["pending", "Confirmed"],

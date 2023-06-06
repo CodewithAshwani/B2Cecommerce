@@ -16,6 +16,10 @@ const placeOrder = async function (req, res) {
 
 const getOrder = async function (req, res) {
   try {
+    console.log("in controller");
+    const userId = req.params.userid;
+    const result = await orderservice.getOrder(userId);
+    res.status(200).send(result);
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: error.message });
