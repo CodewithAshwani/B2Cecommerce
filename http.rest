@@ -99,3 +99,16 @@ Content-Type: application/json
 ###
 POST http://localhost:3004/cart/647efe460d0caac65fe57f85/getCart
 Content-Type: application/json
+
+
+
+###
+POST http://localhost:3004/orders/647efe460d0caac65fe57f85/placeOrder
+Content-Type: application/json
+
+{
+    "Address":"gurgaon"
+}
+
+get http://localhost:3004/orders/647efe460d0caac65fe57f85/getOrder
+Content-Type: application/json

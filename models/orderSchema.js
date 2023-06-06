@@ -6,19 +6,29 @@ const orderSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  Address:{
-    type:String,
-    required:true,
+  Address: {
+    type: String,
+    required: true,
+    maxlength: 300,
   },
-  items:{
-    type:mongoose.Schema.Types.ObjectId;
-    ref:"Cart",
-    required:true,
+  items: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Cart",
+    required: true,
   },
-  orderCreated:{
-    type:Date,
-    default:Date.now,
-  }
+  status: {
+    type: String,
+    enum: ["pending", "Confirmed"],
+    default: "pending",
+  },
+  totalAmount: {
+    type: String,
+    required: true,
+  },
+  orderCreatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Order = mongoose.model("Order", orderSchema);
