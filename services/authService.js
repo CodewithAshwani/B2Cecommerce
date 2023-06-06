@@ -33,7 +33,7 @@ const sendotp = async (email, otp) => {
 
     let mailOptions = {
       from: process.env.Email,
-      to: "vaibhavtezan@gmail.com",
+      to: email,
       subject: "User Verification ",
       text: `your otp to activate your account is ${otp}`,
     };

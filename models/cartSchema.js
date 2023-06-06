@@ -18,8 +18,31 @@ const cartSchema = new mongoose.Schema({
         required: true,
         default: 0,
       },
+      shippingcharges: {
+        type: Number,
+        default: 40,
+        required: true,
+      },
+      Price: {
+        type: Number,
+        required: true,
+      },
     },
   ],
+  subtotal: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  totalAmount: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Cart = mongoose.model("Cart", cartSchema);

@@ -91,14 +91,6 @@ const ProductExists = async function (id) {
   }
 };
 
-const ProductexistInCart = async function (userid, pid, quantity) {
-  try {
-  } catch (error) {
-    console.log(error);
-    throw { message: error.message };
-  }
-};
-
 module.exports = {
   updateToken,
   generateToken,
@@ -109,5 +101,4 @@ module.exports = {
   verifyPassword,
   verifyUser,
   ProductExists,
-  ProductexistInCart,
 };

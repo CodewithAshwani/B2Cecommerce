@@ -1,21 +1,35 @@
 const Cart = require("../models/cartSchema");
-const helperService = require("../services/helperService");
+const Product = require("../models/ProductSchema");
 
 exports.addToCart = async (userId, productId, quantity) => {
   try {
     console.log("in service");
-    ////find cart if cart is there
-    let cart = await Cart.findOne({ customer: userId });
-    console.log(cart);
-    if (!cart) {
-      cart = new Cart({ customer: userId, items: [] });
-    }
-    const cartid = cart._id;
-    console.log(cartid);
-    await helperService.ProductexistInCart(cartid, productId, quantity);
+    let subtotal,
+      totalAmount = 0;
+    const shippingcharges = 40;
 
-    cart.items.push({ product: productId, quantity });
-    console.log("item is pushed");
+    const product = await Product.findById(productId);
+    const price = product.Price;
+
+    const cart = new Cart({
+      customer: userId,
+      items: [],
+      subtotal,
+      totalAmount,
+    });
+
+    cart.items.push({
+      product: productId,
+      quantity,
+      shippingcharges,
+      Price: price,
+    });
+
+    cart.subtotal = cart.items.reduce((subtotal, item) => {
+      return subtotal + item.quantity * item.Price;
+    }, 0);
+
+    cart.totalAmount = shippingcharges + cart.subtotal;
     await cart.save();
     return cart;
   } catch (error) {
@@ -26,7 +40,8 @@ exports.addToCart = async (userId, productId, quantity) => {
 
 exports.getCart = async function (userid) {
   try {
-    const cart = await Cart.find({ customer: userid });
+    console.log("in service");
+    const cart = await Cart.findOne({ customer: userid });
     console.log(cart);
     return cart;
   } catch (error) {

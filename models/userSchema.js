@@ -38,7 +38,10 @@ const userSchema = new mongoose.Schema({
   otp: {
     type: String,
   },
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 userSchema.pre("save", async function (next) {

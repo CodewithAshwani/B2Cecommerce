@@ -6,7 +6,7 @@ const {
   UpdateProduct,
   deleteProduct,
 } = require("../controllers/productController");
-
+///according to admin
 router.route("/:userid/createProduct").post(createProduct);
 router.route("/getAllProducts").get(getAllProducts);
 router.route("/:userid/UpdateProduct/:pid").put(UpdateProduct);

@@ -17,13 +17,15 @@ exports.verifyUserRole = async function (req, res, next) {
   }
 };
 
-exports.addToCart = async function (req, res) {
+exports.addProductToCart = async function (req, res) {
   try {
     const userId = req.params.userid;
     const { productId, quantity } = req.body;
     console.log(userId, productId, quantity);
-    const cart = await cartService.addToCart(userId, productId, quantity);
-    res.status(200).json({ message: "Product added to cart successfully" });
+    const result = await cartService.addToCart(userId, productId, quantity);
+    res
+      .status(200)
+      .send({ message: "Product added to cart successfully", result });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -31,10 +33,12 @@ exports.addToCart = async function (req, res) {
 
 exports.getCart = async function (req, res) {
   try {
-    const userid = req.params.userid;
-    const result = await cartService.getCart(userid);
+    const userId = req.params.userid;
+    console.log("in controller");
+    const result = await cartService.getCart(userId);
     res.status(200).send(result);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    console.log(error);
+    throw { message: error.message };
   }
 };

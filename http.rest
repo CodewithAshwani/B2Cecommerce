@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
     "email":"viranshk7@gmail.com",
-    "otp":"883492"
+    "otp":"683075"
 }
 
 
@@ -47,12 +47,12 @@ Authorization: bearer eyJhbGciOiJIUzI1NiJ9.dmlyYW5zaGs3QGdtYWlsLmNvbQ.a0zjz2vMZJ
 
 
 ####
-POST http://localhost:3004/product/647dfecfab46174dd1915f4d/createProduct
+POST http://localhost:3004/product/647efe460d0caac65fe57f85/createProduct
 Content-Type: application/json
 
 {
-    "Title":"cake1 ",
-    "Description":"cake1 is delicious ",
+    "Title":"cake2 ",
+    "Description":"cake2 is more delicious ",
     "Price":2000,
     "Availability":true,
     "Category":"Dairy"
@@ -81,15 +81,15 @@ DELETE http://localhost:3004/product/647dfecfab46174dd1915f4d/deleteProduct/647e
 Content-Type: application/json
 
 ###
-POST http://localhost:3004/cart/647e3073a6e29627bd164575/addTocart
+POST http://localhost:3004/cart/647efe460d0caac65fe57f85/addTocart
 Content-Type: application/json
 
 {
-    "productId":"647e188b0f974607028f7dd7",
-    "quantity":90
+    "productId":"647f18dec3d88ea6bc23b9b9",
+    "quantity":4
 }
 
 
 ###
-POST http://localhost:3004/cart/647e3073a6e29627bd164575/getCart
+POST http://localhost:3004/cart/647efe460d0caac65fe57f85/getCart
 Content-Type: application/json

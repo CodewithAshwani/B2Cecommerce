@@ -14,7 +14,7 @@ exports.createUser = async function (req, res) {
     console.log(userId);
     res.status(201).send({
       message:
-        "Please verify your email or phoneNumber to activate your Account ",
+        "Please generate otp to verify your email to activate your Account ",
       userId,
     });
   } catch (error) {
@@ -26,9 +26,8 @@ exports.generateOTP = async function (req, res) {
   try {
     let { email } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
     await authService.sendotp(email, otp);
-    res.status(200).send("otp sended successfully");
+    res.status(200).send(`otp sended successfully to ${email}`);
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
@@ -42,7 +41,7 @@ exports.verifyOtpByMail = async function (req, res) {
     if (user.isActive) {
       return res.status(200).send({
         message:
-          "already active no need to verify!! Login via email and password",
+          "your account is already active no need to verify!! Login via email and password",
       });
     }
     await helperService.verifyOtp(email, otp);
