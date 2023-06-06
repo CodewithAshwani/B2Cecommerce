@@ -85,3 +85,15 @@ exports.UserloginViaToken = async function (req, res) {
     return res.status(400).send({ message: err.message });
   }
 };
+
+exports.logout = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    console.log(token);
+    await authService.logout(token);
+    res.status(200).send({ message: "Logged out successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
+};

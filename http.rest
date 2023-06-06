@@ -46,6 +46,12 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiJ9.dmlyYW5zaGs3QGdtYWlsLmNvbQ.a0zjz2vMZJDmzM_deJq7pLywteR2x_vxWAmij5Qpb8Q
 
 
+
+###
+POST http://localhost:3004/user/logout
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiJ9.dmlyYW5zaGs3QGdtYWlsLmNvbQ.a0zjz2vMZJDmzM_deJq7pLywteR2x_vxWAmij5Qpb8Q
+
 ####
 POST http://localhost:3004/product/647efe460d0caac65fe57f85/createProduct
 Content-Type: application/json

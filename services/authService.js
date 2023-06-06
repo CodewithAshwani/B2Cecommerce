@@ -1,4 +1,3 @@
-const { getMaxListeners } = require("process");
 const User = require("../models/userSchema");
 const nodemailer = require("nodemailer");
 
@@ -76,10 +75,26 @@ const generateToken = async function (email) {
   }
 };
 
+const logout = async (token) => {
+  console.log("logout service");
+  const user = await User.findOne({ token: token });
+  if (!user) {
+    throw new Error("User not found");
+  }
+  const result = await User.findOneAndUpdate(
+    { _id: user._id },
+    { token: "" },
+    { new: true }
+  );
+
+  return result;
+};
+
 module.exports = {
   updateToken,
   generateToken,
   verifyToken,
   createNewUser,
   sendotp,
+  logout,
 };

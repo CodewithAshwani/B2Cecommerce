@@ -59,7 +59,7 @@ const generateToken = async function (email) {
 const updateToken = async function (email1, Token) {
   console.log("In auth service");
   let result = await User.findOneAndUpdate({ email: email1 }, { token: Token });
-  // console.log(result);
+
   return result;
 };
 
