@@ -4,7 +4,7 @@ exports.createProduct = async (
   Title,
   Description,
   Price,
-  Availabilty,
+  Availability,
   Category,
   owner
 ) => {
@@ -14,16 +14,13 @@ exports.createProduct = async (
       Title,
       Description,
       Price,
-      Availabilty,
+      Availability,
       Category,
       owner
     );
-
     await NewProduct.save();
-    console.log("newproduct is done here");
     return NewProduct;
   } catch (error) {
-    // console.log(error);
     throw { message: error.message };
   }
 };
@@ -46,20 +43,23 @@ exports.updateProduct = async (
   Category
 ) => {
   try {
-    const Product = await Product.findOneAndUpdate(
+    console.log("in service");
+    const product = await Product.findOneAndUpdate(
       { _id: pid },
-      { Title, Description, Price, Availability, Category }
+      { Title, Description, Price, Availability, Category },
+      { new: true, runValidators: true }
     );
-    return Product;
+    return product;
   } catch (error) {
     throw { message: error.message };
   }
 };
 
-exports.deleteProduct = async (req, res) => {
+exports.deleteProduct = async (id) => {
   try {
-    const Product = await Product.findOneAndDelete({ _id: req.params.id });
-    return Product;
+    console.log("in service");
+    const product = await Product.findOneAndDelete({ _id: id });
+    return product;
   } catch (error) {
     throw { message: error.message };
   }

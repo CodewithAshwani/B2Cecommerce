@@ -15,13 +15,25 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  Availabilty: {
+  Availability: {
     type: Boolean,
     required: true,
   },
   Category: {
     type: String,
-    enum: ["Personal care", "Electronics", "Baby care", "Dairy", "tea-coffee"],
+    enum: {
+      values: [
+        "Personal care",
+        "Electronics",
+        "Baby care",
+        "Dairy",
+        "tea-coffee",
+        "food",
+        "fruits",
+      ],
+      message:
+        'Invalid category. Valid categories are: "Personal care", "Electronics", "Baby care", "Dairy", "tea-coffee", "food".',
+    },
     required: true,
   },
   owner: {

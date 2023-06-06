@@ -1,3 +1,4 @@
+const { getMaxListeners } = require("process");
 const User = require("../models/userSchema");
 const nodemailer = require("nodemailer");
 
@@ -32,7 +33,7 @@ const sendotp = async (email, otp) => {
 
     let mailOptions = {
       from: process.env.Email,
-      to: email,
+      to: "vaibhavtezan@gmail.com",
       subject: "User Verification ",
       text: `your otp to activate your account is ${otp}`,
     };

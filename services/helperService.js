@@ -1,6 +1,8 @@
 const User = require("../models/userSchema");
+const Product = require("../models/ProductSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 //if user is inactive ,change status
 const makeUserActive = async function (email) {
   console.log("In helper service");
@@ -70,6 +72,29 @@ const verifyPassword = async function (password, userPassword) {
   return checkPassword;
 };
 
+///for admin
+const verifyUser = async function (id) {
+  try {
+    console.log("in service helper");
+    const user = await User.find({ _id: id });
+    if (!user) throw new Error("Invalid id");
+    console.log(user);
+    return user;
+  } catch (error) {
+    throw { message: error.message };
+  }
+};
+
+const ProductExists = async function (id) {
+  try {
+    const product = await Product.find({ _id: id });
+    console.log(product);
+    if (typeof product == "null") return "Prdocut doesnot exists ";
+    return "Product exists";
+  } catch (error) {
+    throw { message: error.message };
+  }
+};
 module.exports = {
   updateToken,
   generateToken,
@@ -78,4 +103,6 @@ module.exports = {
   makeUserActive,
   getUserByEmail,
   verifyPassword,
+  verifyUser,
+  ProductExists,
 };
