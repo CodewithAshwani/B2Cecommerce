@@ -383,7 +383,7 @@
       }
     },
     "/orders/{userid}/getOrder": {
-      "post": {
+      "get": {
         "summary": "place order",
         "tags": ["Order"],
         "description": "place order",
