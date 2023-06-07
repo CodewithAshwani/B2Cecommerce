@@ -424,7 +424,7 @@
                 "type": "Number"
               }
             },
-            "required": ["product", "quantity", "shippingcharges", "Price"]
+            "required": ["product", "quantity"]
           }
         },
         "subtotal": {
