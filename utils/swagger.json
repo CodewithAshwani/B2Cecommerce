@@ -359,6 +359,11 @@
         "description": "place order",
         "parameters": [
           {
+            "name": "userid",
+            "in": "path",
+            "Description": "get cart from userid"
+          },
+          {
             "name": "place ",
             "in": "body",
             "type": "string",
@@ -383,6 +388,13 @@
         "tags": ["Order"],
         "description": "place order",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "Description": "get cart from userid"
+          }
+        ],
         "responses": {
           "200": {
             "description": "order is created and remains in pending state "
