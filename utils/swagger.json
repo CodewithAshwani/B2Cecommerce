@@ -295,7 +295,7 @@
         }
       }
     },
-    "cart/{userid}/addTocart": {
+    "/cart/{userid}/addTocart": {
       "post": {
         "tags": ["cart"],
         "summary": "add product to cart",
