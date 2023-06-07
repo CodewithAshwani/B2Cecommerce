@@ -20,6 +20,17 @@
     "http",
     "https"
   ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "in": "header"
+      }
+    }
+  },
   "paths": {
     "/user/signup": {
       "post": {
@@ -449,17 +460,6 @@
       }
     }
   },
-  "components": {
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "in": "header"
-      }
-    }
-  },
   "definitions": {
     "UserInput": {
       "type": "object",
@@ -592,4 +592,5 @@
       }
     }
   }
+  
 }
