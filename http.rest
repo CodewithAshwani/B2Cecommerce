@@ -57,8 +57,8 @@ POST http://localhost:3004/product/647efe460d0caac65fe57f85/createProduct
 Content-Type: application/json
 
 {
-    "Title":"cake2 ",
-    "Description":"cake2 is more delicious ",
+    "Title":"cake4",
+    "Description":"cake4 is more delicious ",
     "Price":2000,
     "Availability":true,
     "Category":"Dairy"
@@ -71,7 +71,7 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:3004/product/647dfecfab46174dd1915f4d/UpdateProduct/647e0cc736a691edbb99eb5f
+PATCH  http://localhost:3004/product/647dfecfab46174dd1915f4d/UpdateProduct/647e0cc736a691edbb99eb5f
 Content-Type: application/json
 
 {

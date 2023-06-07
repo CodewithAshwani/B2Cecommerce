@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "E-Commerce",
-    "description": "API endpoints for SkillUp",
+    "title": "E-Commerce App ",
+    "description": "API endpoints for Ecommerce",
     "version": "1.0.0"
   },
   "servers": [
@@ -87,7 +87,6 @@
         }
       }
     },
-
     "/user/login": {
       "post": {
         "tags": ["Users"],
@@ -141,7 +140,6 @@
         }
       }
     },
-
     "/user/logout": {
       "post": {
         "tags": ["Users"],
@@ -169,6 +167,151 @@
           }
         }
       }
+    },
+    "/product/{userid}/createProduct": {
+      "post": {
+        "tags": ["product"],
+        "summary": "create product",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "create Prodcut",
+            "in": "body",
+            "description": "create product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "product created successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/product/getAllProducts": {
+      "get": {
+        "summary": "Get all products",
+        "tags": ["product"],
+        "description": "Retrieve a list of all products",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      }
+    },
+    "/product/{userid}/UpdateProduct/{pid}": {
+      "patch": {
+        "tags": ["product"],
+        "summary": "Update product",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pid",
+            "in": "path",
+            "description": "product ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "create Prodcut",
+            "in": "body",
+            "description": "create product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "product updated successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+
+    "/product/{userid}/deleteProduct/{pid}": {
+      "delete": {
+        "tags": ["product"],
+        "summary": "delete  product",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pid",
+            "in": "path",
+            "description": "product ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "product deleted successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "cart/{userid}/addProductToCart": {
+      "post": {
+        "tags": ["cart"],
+        "summary": "add product to cart",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Product Ids",
+            "in": "body",
+            "description": "product ids",
+            "required": true,
+            "type": "array",
+            "schema": {
+              "$ref": "#/definitions/CartInput"
+            }
+          }
+        ]
+      }
     }
   },
   "definitions": {
@@ -194,7 +337,6 @@
       },
       "required": ["userName", "password", "role", "email", "phoneNumber"]
     },
-
     "GenerateAndVerifyOtpViaEmail": {
       "type": "object",
       "properties": {
@@ -207,7 +349,6 @@
       },
       "required": ["email"]
     },
-
     "Login": {
       "type": "object",
       "properties": {
@@ -223,6 +364,73 @@
       "type": "object",
       "properties": {
         "token": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductInput": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Price": {
+          "type": "Number"
+        },
+        "Availability": {
+          "type": "Boolean"
+        },
+        "Category": {
+          "$ref": "#/definitions/Category"
+        }
+      }
+    },
+    "Category": {
+      "type": "string",
+      "enum": [
+        "Personal care",
+        "Electronics",
+        "Baby care",
+        "Dairy",
+        "tea-coffee",
+        "food",
+        "fruits"
+      ]
+    },
+    "CartInput": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "product": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "Number"
+              },
+              "shippingcharges": {
+                "type": "Number"
+              },
+              "Price": {
+                "type": "Number"
+              }
+            },
+            "required": ["product", "quantity", "shippingcharges", "Price"]
+          }
+        },
+        "subtotal": {
+          "type": "Number"
+        },
+        "totalAmount": {
+          "type": "Number"
+        },
+        "createdAt": {
           "type": "string"
         }
       }

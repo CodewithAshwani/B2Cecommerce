@@ -9,7 +9,7 @@ const {
 ///according to admin
 router.route("/:userid/createProduct").post(createProduct);
 router.route("/getAllProducts").get(getAllProducts);
-router.route("/:userid/UpdateProduct/:pid").put(UpdateProduct);
+router.route("/:userid/UpdateProduct/:pid").patch(UpdateProduct);
 router.route("/:userid/deleteProduct/:pid").delete(deleteProduct);
 
 module.exports = router;

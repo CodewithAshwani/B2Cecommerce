@@ -17,6 +17,7 @@ exports.createProduct = async (req, res) => {
 
     res.send(201, result);
   } catch (error) {
+    console.log(error);
     res.status(400).send({ message: error.message });
   }
 };
