@@ -416,25 +416,10 @@
               },
               "quantity": {
                 "type": "Number"
-              },
-              "shippingcharges": {
-                "type": "Number"
-              },
-              "Price": {
-                "type": "Number"
               }
             },
             "required": ["product", "quantity"]
           }
-        },
-        "subtotal": {
-          "type": "Number"
-        },
-        "totalAmount": {
-          "type": "Number"
-        },
-        "createdAt": {
-          "type": "string"
         }
       }
     }
