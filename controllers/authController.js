@@ -46,7 +46,7 @@ exports.verifyOtpByMail = async function (req, res) {
     }
     await helperService.verifyOtp(email, otp);
     await helperService.makeUserActive(email);
-    return res.status(200).send({
+    res.status(200).send({
       message:
         "your account has been Activated succesfully please login with your credentials to get your token",
     });
