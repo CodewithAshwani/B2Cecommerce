@@ -328,7 +328,7 @@
       }
     },
 
-    "/cart/{userid}/getCart": {
+    "/cart/{userid}/showCart": {
       "get": {
         "summary": "Get Full cart",
         "tags": ["cart"],
@@ -382,7 +382,7 @@
         }
       }
     },
-    "/orders/{userid}/getOrder": {
+    "/orders/{userid}/showOrder": {
       "get": {
         "summary": "place order",
         "tags": ["Order"],

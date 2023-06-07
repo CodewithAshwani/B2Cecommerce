@@ -2,40 +2,46 @@ const User = require("../models/userSchema");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 
-const createNewUser = async function (
-  name,
-  email,
-  password,
-  role,
-  phoneNumber
-) {
+const createNewUser = async function (name, email, password, role, phoneNumber) {
   try {
-    const newUser = new User({ name, email, phoneNumber, role, password });
+    const newUser = new User({
+      name,
+      email,
+      phoneNumber,
+      role,
+      password
+    });
     const result = await newUser.save();
     const userId = result._id;
     return userId;
   } catch (error) {
-    throw { message: error.message };
+    throw {
+      message: error.message
+    };
   }
 };
 
 const sendotp = async (email, otp) => {
   try {
-    await User.updateOne({ email }, { otp }, { upsert: true });
+    await User.updateOne({
+      email
+    }, {
+      otp
+    }, { upsert: true });
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD,
+        pass: process.env.EMAIL_PASSWORD
       },
-      debug: true,
+      debug: true
     });
 
     let mailOptions = {
       from: process.env.Email,
       to: email,
       subject: "User Verification ",
-      text: `your otp to activate your account is ${otp}`,
+      text: `your otp to activate your account is ${otp}`
     };
 
     return transporter.sendMail(mailOptions, function (error) {
@@ -52,16 +58,24 @@ const sendotp = async (email, otp) => {
 
 const verifyToken = async function (token) {
   console.log("In auth service");
-  const getEmailByToken = await User.findOne({ token });
-  if (!getEmailByToken) throw new Error("access denied !! Invalid Token");
+  const user = await User.findOne({ token });
+  console.log(user);
+  if (!user)
+    throw new Error("access denied !! Invalid Token");
+
   const result = await jwt.verify(token, process.env.SECRETKEY);
-  if (result !== getEmailByToken.email) throw new Error("Invalid token");
+  console.log("this is result:", result);
+  if (result !== user.email)
+    throw new Error("Invalid token");
+
   return result;
 };
 
 const updateToken = async function (email, Token) {
   console.log("In auth service");
-  let result = await User.findOneAndUpdate({ email: email }, { token: Token });
+  let result = await User.findOneAndUpdate({
+    email: email
+  }, { token: Token });
   // console.log(result);
   return result;
 };
@@ -82,11 +96,11 @@ const logout = async (token) => {
   if (!user) {
     throw new Error("User not found , please login with credential for token");
   }
-  const result = await User.findOneAndUpdate(
-    { _id: user._id },
-    { token: "" },
-    { new: true }
-  );
+  const result = await User.findOneAndUpdate({
+    _id: user._id
+  }, {
+    token: ""
+  }, { new: true });
 
   return result;
 };
@@ -97,5 +111,6 @@ module.exports = {
   verifyToken,
   createNewUser,
   sendotp,
-  logout,
+  logout
 };
+

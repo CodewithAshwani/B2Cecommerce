@@ -8,8 +8,8 @@ const {
 } = require("../controllers/cartController");
 
 router.route("/:userid/addTocart").post(verifyUserRole, addProductToCart);
-router.route("/:userid/getCart").get(verifyUserRole, getCart);
+router.route("/:userid/showCart").get(verifyUserRole, getCart);
 
-// router.route("/:userid/");
+
 
 module.exports = router;
