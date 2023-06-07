@@ -334,6 +334,13 @@
         "tags": ["cart"],
         "description": "Retrieve cart",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "Description": "get cart from userid"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
