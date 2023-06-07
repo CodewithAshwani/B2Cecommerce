@@ -38,11 +38,16 @@ const verifyOtp = async function (email, otp) {
 
 const generateToken = async function (email) {
   try {
+    console.log("in helper service");
     const secretkety = process.env.SECRETKEY;
-    const token = await jwt.sign(email, secretkety);
+    const user = await User.findOne({ email: email });
+    console.log("userid is  :", user._id);
+    const userid = user._id;
+    const token = await jwt.sign({ userid }, secretkety);
     console.log(token);
     return token;
   } catch (err) {
+    console.log(err)
     throw err;
   }
 };

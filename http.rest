@@ -34,7 +34,7 @@ Content-Type: application/json
 
 
 ###
-POST {{baseurl1}}user/login
+POST http://localhost:3004/user/login
 Content-Type: application/json
 
 {
