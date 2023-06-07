@@ -103,7 +103,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:3004/cart/64802883b235c90335180859/getCart
+POST {{baseurl1}}cart/64802883b235c90335180859/getCart
 Content-Type: application/json
 
 
