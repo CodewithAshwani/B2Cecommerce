@@ -317,7 +317,7 @@
             }
           }
         ],
-          "responses": {
+        "responses": {
           "200": {
             "description": "products added in cart  successfully"
           },
@@ -337,7 +337,7 @@
         "responses": {
           "200": {
             "description": "OK",
-           
+
             "400": {
               "description": "Bad Request"
             }
@@ -345,22 +345,22 @@
         }
       }
     },
-    "orders/{userid}/placeOrder":{
-        "post":{
-            "summary": "place order",
-            "tags":["Order"],
-            "description":"place order",
-            "parameters":[
-                {
-                    "name":"place ",
-                    "in":"body",
-                    "type":"string",
-                    "schema":{
-                     "$ref":"#/definitions/OrderInput"
-                    }
-                }
-            ],
-              "responses": {
+    "orders/{userid}/placeOrder": {
+      "post": {
+        "summary": "place order",
+        "tags": ["Order"],
+        "description": "place order",
+        "parameters": [
+          {
+            "name": "place ",
+            "in": "body",
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/OrderInput"
+            }
+          }
+        ],
+        "responses": {
           "200": {
             "description": "order is created and remains in pending state "
           },
@@ -368,6 +368,23 @@
             "description": "Bad Request"
           }
         }
+      }
+    },
+    "orders/{userid}/getOrder": {
+      "post": {
+        "summary": "place order",
+        "tags": ["Order"],
+        "description": "place order",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "order is created and remains in pending state "
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
     }
   },
   "definitions": {
