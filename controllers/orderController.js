@@ -3,10 +3,10 @@ const orderservice = require("../services/orderService");
 const placeOrder = async function (req, res) {
   try {
     console.log("in controller");
-    const userId = req.params.userid;
+    const userId = req.loggedInUser;
     const { Address } = req.body;
     console.log(userId, Address);
-    const result = await orderservice.createOrder(userId, Address);
+    const result = await orderservice.createOrder(userId._id, Address);
     res.status(200).send(result);
   } catch (error) {
     console.log(error);
@@ -17,8 +17,8 @@ const placeOrder = async function (req, res) {
 const getOrder = async function (req, res) {
   try {
     console.log("in controller");
-    const userId = req.params.userid;
-    const result = await orderservice.getOrder(userId);
+    const userId = req.loggedInUser;
+    const result = await orderservice.getOrder(userId._id);
     res.status(200).send(result);
   } catch (error) {
     console.log(error);

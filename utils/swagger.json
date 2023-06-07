@@ -1,5 +1,5 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "E-Commerce App ",
     "description": "API endpoints for Ecommerce",
@@ -16,11 +16,16 @@
       "url": "http://localhost:3004"
     }
   ],
-  "schemes": ["http", "https"],
+  "schemes": [
+    "http",
+    "https"
+  ],
   "paths": {
     "/user/signup": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Create a new user",
         "parameters": [
           {
@@ -45,7 +50,9 @@
     },
     "/user/generateOtp": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Send Otp to email to activate account",
         "parameters": [
           {
@@ -70,7 +77,9 @@
     },
     "/user/verifyOtp": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Verify otp to activate your account ",
         "parameters": [
           {
@@ -95,7 +104,9 @@
     },
     "/user/login": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "login user with Email and password ",
         "parameters": [
           {
@@ -120,19 +131,11 @@
     },
     "/user/login/token": {
       "post": {
-        "tags": ["Users"],
-        "summary": "Login user with token",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Token for authentication",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/TokenInput"
-            }
-          }
+        "tags": [
+          "Users"
         ],
+        "summary": "Login user with token",
+    
         "responses": {
           "200": {
             "description": "login using token successfully"
@@ -148,19 +151,16 @@
     },
     "/user/logout": {
       "post": {
-        "tags": ["Users"],
-        "summary": "Logout user",
-        "parameters": [
+        "tags": [
+          "Users"
+        ],
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Token for user logout",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/TokenInput"
-            }
+            "bearerAuth": []
           }
         ],
+        "summary": "Logout user",
+ 
         "responses": {
           "200": {
             "description": "user logout  successfully"
@@ -174,18 +174,18 @@
         }
       }
     },
-    "/product/{userid}/createProduct": {
+    "/product/createProduct": {
       "post": {
-        "tags": ["product"],
+        "tags": [
+          "product"
+        ],  "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "create product",
         "parameters": [
-          {
-            "name": "userid",
-            "in": "path",
-            "description": "User ID",
-            "required": true,
-            "type": "string"
-          },
+        
           {
             "name": "create Prodcut",
             "in": "body",
@@ -209,9 +209,13 @@
     "/product/getAllProducts": {
       "get": {
         "summary": "Get all products",
-        "tags": ["product"],
+        "tags": [
+          "product"
+        ],
         "description": "Retrieve a list of all products",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -225,29 +229,29 @@
         }
       }
     },
-    "/product/{userid}/UpdateProduct/{pid}": {
+    "/product/UpdateProduct": {
       "patch": {
-        "tags": ["product"],
+        "tags": [
+          "product"
+        ],  "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Update product",
         "parameters": [
-          {
-            "name": "userid",
-            "in": "path",
-            "description": "User ID",
-            "required": true,
-            "type": "string"
-          },
+          
           {
             "name": "pid",
-            "in": "path",
+            "in": "body",
             "description": "product ID",
             "required": true,
             "type": "string"
           },
           {
-            "name": "create Prodcut",
+            "name": "UpdateProdcut",
             "in": "body",
-            "description": "create product",
+            "description": "Update product",
             "required": true,
             "schema": {
               "$ref": "#/definitions/ProductInput"
@@ -264,10 +268,15 @@
         }
       }
     },
-
-    "/product/{userid}/deleteProduct/{pid}": {
+    "/product/deleteProduct": {
       "delete": {
-        "tags": ["product"],
+        "tags": [
+          "product"
+        ],  "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "delete  product",
         "parameters": [
           {
@@ -295,9 +304,15 @@
         }
       }
     },
-    "/cart/{userid}/addTocart": {
+    "/cart/addTocart": {
       "post": {
-        "tags": ["cart"],
+        "tags": [
+          "cart"
+        ],  "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "add product to cart",
         "parameters": [
           {
@@ -327,13 +342,20 @@
         }
       }
     },
-
-    "/cart/{userid}/showCart": {
+    "/cart/showCart": {
       "get": {
         "summary": "Get Full cart",
-        "tags": ["cart"],
+        "tags": [
+          "cart"
+        ],  "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Retrieve cart",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "userid",
@@ -344,7 +366,6 @@
         "responses": {
           "200": {
             "description": "OK",
-
             "400": {
               "description": "Bad Request"
             }
@@ -352,10 +373,16 @@
         }
       }
     },
-    "/orders/{userid}/placeOrder": {
+    "/orders/placeOrder": {
       "post": {
         "summary": "place order",
-        "tags": ["Order"],
+        "tags": [
+          "Order"
+        ],  "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "place order",
         "parameters": [
           {
@@ -382,12 +409,20 @@
         }
       }
     },
-    "/orders/{userid}/showOrder": {
+    "/orders/showOrder": {
       "get": {
         "summary": "place order",
-        "tags": ["Order"],
+        "tags": [
+          "Order"
+        ],  "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "place order",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "userid",
@@ -406,6 +441,17 @@
       }
     }
   },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "in": "header"
+      }
+    }
+  },
   "definitions": {
     "UserInput": {
       "type": "object",
@@ -421,13 +467,22 @@
         },
         "role": {
           "type": "string",
-          "enum": ["Admin", "Consumer"]
+          "enum": [
+            "Admin",
+            "Consumer"
+          ]
         },
         "phoneNumber": {
           "type": "string"
         }
       },
-      "required": ["userName", "password", "role", "email", "phoneNumber"]
+      "required": [
+        "userName",
+        "password",
+        "role",
+        "email",
+        "phoneNumber"
+      ]
     },
     "GenerateAndVerifyOtpViaEmail": {
       "type": "object",
@@ -439,7 +494,9 @@
           "type": "string"
         }
       },
-      "required": ["email"]
+      "required": [
+        "email"
+      ]
     },
     "Login": {
       "type": "object",
@@ -502,7 +559,10 @@
           "type": "number"
         }
       },
-      "required": ["productId", "quantity"]
+      "required": [
+        "productId",
+        "quantity"
+      ]
     },
     "OrderInput": {
       "type": "object",

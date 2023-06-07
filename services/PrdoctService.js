@@ -62,13 +62,13 @@ exports.updateProduct = async (
       { Title, Description, Price, Availability, Category },
       { new: true, runValidators: true }
     );
-    return product;
+    return "Product has been updated succesfully";
   } catch (error) {
     throw { message: error.message };
   }
 };
 
-exports.deleteProduct = async (userid, id) => {
+exports.deleteProduct = async (userid, pid) => {
   try {
     console.log("in service");
     const user = await User.findOne({ _id: userid });
@@ -78,8 +78,8 @@ exports.deleteProduct = async (userid, id) => {
         message:
           "user exists , but Consumer is not authorized to do this action",
       };
-    const product = await Product.findOneAndDelete({ _id: id });
-    return product;
+    await Product.findOneAndDelete({ _id: pid });
+    return "Product deleted successfully ";
   } catch (error) {
     throw { message: error.message };
   }

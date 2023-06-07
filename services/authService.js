@@ -1,6 +1,7 @@
 const User = require("../models/userSchema");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt")
 
 const createNewUser = async function (name, email, password, role, phoneNumber) {
   try {
@@ -56,39 +57,53 @@ const sendotp = async (email, otp) => {
   }
 };
 
-const verifyToken = async function (token) {
-  console.log("In auth service");
-  const user = await User.findOne({ token });
-  console.log(user);
-  if (!user)
-    throw new Error("access denied !! Invalid Token");
+const userLogin = async (email, inputPassword) => {
+  console.log("In Auth login  ");
+  const user = await User.findOne({
+    email,
+    isActive: true
+  });
+  console.log("user:  ", user);
+  if (!user) {
+    throw new Error("User not found");
+  }
+  const isCorrect = await bcrypt.compare(inputPassword, user.password);
+  if (!isCorrect) {
+    throw new Error("Invalid credentials");
+  }
+  const token = jwt.sign({
+    _id: user._id,
+    isActive: true
+  }, process.env.SECRETKEY, {
+    expiresIn: "1d"
+  }
 
-  const result = await jwt.verify(token, process.env.SECRETKEY);
-  console.log("this is result:", result);
-  if (result !== user.email)
-    throw new Error("Invalid token");
-
-  return result;
+  );
+  console.log("token " + token);
+  await User.findOneAndUpdate({ _id: user._id }, { token: token });
+  return token;
 };
 
-const updateToken = async function (email, Token) {
-  console.log("In auth service");
-  let result = await User.findOneAndUpdate({
-    email: email
-  }, { token: Token });
-  // console.log(result);
-  return result;
-};
-
-const generateToken = async function (email) {
+const verifyToken = async (Token) => {
+  console.log("In Auth service to verify token ");
   try {
-    const secretkety = process.env.SECRETKEY;
-    const token = await jwt.sign(email, secretkety);
-    return token;
-  } catch (err) {
-    throw err;
+    const token = await jwt.verify(Token, process.env.SECRETKEY);
+    const user = await User.findOne({ _id: token._id, isActive: true });
+    if (!user) {
+      throw new Error("User does not exist or your account is not activated.");
+    } else if (user.token !== Token) {
+
+      throw new Error("Access Denied. Please login with credentials.");
+    }
+    return user;
+  } catch (error) {
+
+    console.error("Error in verifyToken:", error);
+    throw error;
   }
 };
+
+
 
 const logout = async (token) => {
   console.log("logout service");
@@ -106,10 +121,10 @@ const logout = async (token) => {
 };
 
 module.exports = {
-  updateToken,
-  generateToken,
-  verifyToken,
+
   createNewUser,
+  verifyToken,
+  userLogin,
   sendotp,
   logout
 };

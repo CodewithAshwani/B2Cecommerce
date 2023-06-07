@@ -1,7 +1,7 @@
 const User = require("../models/userSchema");
 const Product = require("../models/ProductSchema");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken")
 
 const makeUserActive = async function (email) {
   console.log("In helper service");
@@ -27,8 +27,8 @@ const getUserfromEmail = async function (email) {
 const verifyOtp = async function (email, otp) {
   try {
     const user = await getUserfromEmail(email);
-    console.log(user);
-    if (!(user.otp == otp)) throw new Error("invalid otp");
+    console.log(user.otp, otp);
+    if (user.otp !== otp) throw new Error("invalid otp");
     console.log("otp is verified");
     return user;
   } catch (err) {
@@ -36,39 +36,11 @@ const verifyOtp = async function (email, otp) {
   }
 };
 
-const generateToken = async function (email) {
-  try {
-    console.log("in helper service");
-    const secretkety = process.env.SECRETKEY;
-    const user = await User.findOne({ email: email });
-    console.log("userid is  :", user._id);
-    const userid = user._id;
-    const token = await jwt.sign({ userid }, secretkety);
-    console.log(token);
-    return token;
-  } catch (err) {
-    console.log(err)
-    throw err;
-  }
-};
-
-const updateToken = async function (email1, Token) {
-  console.log("In auth service");
-  let result = await User.findOneAndUpdate({ email: email1 }, { token: Token });
-
-  return result;
-};
-
-const verifyPassword = async function (password, userPassword) {
-  const checkPassword = await bcrypt.compare(password, userPassword);
-  if (!checkPassword) throw new Error("Invalid credentials");
-  return checkPassword;
-};
 
 const verifyUser = async function (id) {
   try {
     console.log("in service helper ");
-    const user = await User.find({ _id: id });
+    const user = await User.findOne({ _id: id });
     if (!user) throw { message: error.message };
     return user;
   } catch (error) {
@@ -80,7 +52,7 @@ const ProductExists = async function (id) {
   try {
     const product = await Product.find({ _id: id });
     console.log(product);
-    if (typeof product == "null") return "Prdocut doesnot exists ";
+    if (typeof product == "null") return "Product doesnot exists ";
     return "Product exists";
   } catch (error) {
     throw { message: error.message };
@@ -88,12 +60,10 @@ const ProductExists = async function (id) {
 };
 
 module.exports = {
-  updateToken,
-  generateToken,
+
   verifyOtp,
   makeUserActive,
   getUserfromEmail,
-  verifyPassword,
   verifyUser,
   ProductExists,
 };

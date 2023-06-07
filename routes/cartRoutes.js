@@ -6,9 +6,10 @@ const {
   addProductToCart,
   getCart,
 } = require("../controllers/cartController");
+const { verifyToken } = require("../controllers/authController");
 
-router.route("/:userid/addTocart").post(verifyUserRole, addProductToCart);
-router.route("/:userid/showCart").get(verifyUserRole, getCart);
+router.route("/addTocart").post(verifyToken, verifyUserRole, addProductToCart);
+router.route("/showCart").get(verifyToken, verifyUserRole, getCart);
 
 
 

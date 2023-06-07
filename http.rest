@@ -2,20 +2,20 @@
 @baseurl=https://ecommerce-production-59b6.up.railway.app/
 @baseurl1=https://e-commerce-w51c.onrender.com/
 @baseurl2=http://localhost:3004/
-
-POST {{baseurl1}}user/signUp
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NDgwMjg4M2IyMzVjOTAzMzUxODA4NTkiLCJpYXQiOjE2ODYxNDg5MTl9.s3cA2YI29N3CAZbfcZeJCM1HFLg7zvv_w-CysjncrdA
+POST http://localhost:3004/user/signUp
 Content-Type: application/json
 
 {
-    "name":"vaib",
-    "email":"vaivt@gmail.com",
+    "name":"vaibhav kumar",
+    "email":"viranshk7@gmail.com",
     "password":"1234567",
-    "role":"Consumer",
+    "role":"Admin",
     "phoneNumber":"8930485009"
 }
 
 ###
-POST {{baseurl1}}user/generateOtp
+POST http://localhost:3004/user/generateOtp
 Content-Type: application/json
 
 {
@@ -23,12 +23,12 @@ Content-Type: application/json
 }
 ####
 
-POST {{baseurl1}}user/verifyOtp
+POST http://localhost:3004/user/verifyOtp
 Content-Type: application/json
 
 {
     "email":"viranshk7@gmail.com",
-    "otp":"683075"
+    "otp":"177337"
 }
 
 
@@ -38,30 +38,24 @@ POST http://localhost:3004/user/login
 Content-Type: application/json
 
 {
-    "email":"vaibhavtezan@gmail.com",
+    "email":"viranshk7@gmail.com",
     "password":"1234567"
 }
 
 
 ###
-POST http://localhost:3004/user/login/token
+POST  http://localhost:3004/user/logout
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.dmFpYmhhdnRlemFuQGdtYWlsLmNvbQ.gPxsv52SAMuS1kB0E-qLn6szxqeEZqKR_WwiQdgRiKg
-
-
-
-###
-POST  {{baseurl1}} user/logout
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.dmlyYW5zaGs3QGdtYWlsLmNvbQ.a0zjz2vMZJDmzM_deJq7pLywteR2x_vxWAmij5Qpb8Q
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
 
 ####
-POST {{baseurl1}}product/64802883b235c90335180859/createProduct
+POST http://localhost:3004/product/createProduct
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
 
 {
-    "Title":"cake4",
-    "Description":"cake4 is more delicious ",
+    "Title":"cake3",
+    "Description":"cake3 is more delicious ",
     "Price":2000,
     "Availability":true,
     "Category":"Dairy"
@@ -69,16 +63,20 @@ Content-Type: application/json
 ###
 
 
-GET {{baseurl1}}product/getAllProducts
+GET http://localhost:3004/product/getAllProducts
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
+
 
 
 ###
 
-PATCH {{baseurl1}}product/64802883b235c90335180859/UpdateProduct/64802f2507d6a2961cc02192
+PATCH http://localhost:3004/product/UpdateProduct
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
 
 {
+    "Productid":"64802f2507d6a2961cc02192",
     "Title":"cake",
     "Description":"cake is very delicious ",
     "Price":2000,
@@ -87,32 +85,40 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{baseurl1}}product/64802883b235c90335180859/deleteProduct/64802f2507d6a2961cc02192
+DELETE http://localhost:3004/product/deleteProduct
 Content-Type: application/json
-
-###
-POST {{baseurl1}}cart/647efe460d0caac65fe57f85/addTocart
-Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
 
 {
-    "productId":"647f18dec3d88ea6bc23b9b9",
+    "ProductId":"6480cd0f2ee7fd78ae092a0b"
+}
+###
+POST http://localhost:3004/cart/addTocart
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
+
+{
+    "productId":"64802f2507d6a2961cc02192",
     "quantity":4
 }
 
 
 ###
-POST {{baseurl1}}cart/64802883b235c90335180859/getCart
+GET  http://localhost:3004/cart/showCart
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
 
 
 
 ###
-POST {{baseurl1}}orders/647efe460d0caac65fe57f85/placeOrder
+POST http://localhost:3004/orders/placeOrder
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
 
 {
     "Address":"gurgaon"
 }
 ###
-GET  {{baseurl1}}orders/647efe460d0caac65fe57f85/getOrder
+GET  http://localhost:3004/orders/showOrder
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU

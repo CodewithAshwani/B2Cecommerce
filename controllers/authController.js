@@ -1,5 +1,7 @@
+
 const authService = require("../services/authService");
 const helperService = require("../services/helperService");
+
 exports.createUser = async function (req, res) {
   try {
     console.log("in auth controller dee s");
@@ -55,42 +57,38 @@ exports.verifyOtpByMail = async function (req, res) {
   }
 };
 
+
 exports.userLogin = async function (req, res) {
   try {
-    const { email, password } = req.body;
-    const user = await helperService.getUserfromEmail(email);
-    if (!user) throw new Error("User does not exist");
-    await helperService.verifyPassword(`${password}`, user.password);
-    const Token = await helperService.generateToken(email);
-    await helperService.updateToken(user.email, Token);
-    if (!user.isActive) {
-      return res.status(200).send({
-        msg: "You are Inactive !!! please Verify your Account using email or phone through otp",
-      });
-    }
+    const { email, password: inputPassword } = req.body;
+    const token = await authService.userLogin(email, inputPassword);
     return res
       .status(200)
-      .send({ message: "User logged in successfully", Token });
+      .send({ message: "User logged in successfully", token });
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
 };
 
-exports.UserloginViaToken = async function (req, res) {
+
+
+exports.verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[0];
-    console.log(token);
-    await authService.verifyToken(token);
-    res.status(200).send({ message: "User Logged in Successfully" });
-  } catch (err) {
-    console.log(err);
-    res.status(400).send({ message: err.message });
+    const Token = req.headers.authorization.split(" ")[1];
+    if (!Token)
+      throw new Error({ message: "Access Denied , please login with credential to genrate token " });
+    const user = await authService.verifyToken(Token);
+    req.loggedInUser = user;
+    next();
+  } catch (error) {
+    console.log("error in user post ", error);
+    res.status(400).send({ message: error.message });
   }
 };
 
 exports.logout = async (req, res) => {
   try {
-    const token = req.headers.authorization.split(" ")[0];
+    const token = req.headers.authorization.split(" ")[1];
     console.log(token);
     await authService.logout(token);
     res.status(200).send({ message: "user Logged out successfully" });
@@ -99,3 +97,4 @@ exports.logout = async (req, res) => {
     res.status(400).send({ message: error.message });
   }
 };
+

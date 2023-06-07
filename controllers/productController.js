@@ -3,7 +3,7 @@ const helperService = require("../services/helperService");
 exports.createProduct = async (req, res) => {
   try {
     const { Title, Description, Price, Availability, Category } = req.body;
-    const owner = req.params.userid;
+    const owner = req.loggedInUser;
     console.log(owner);
     console.log("in product controller");
     const result = await ProductServcie.createProduct(
@@ -12,7 +12,7 @@ exports.createProduct = async (req, res) => {
       Price,
       Availability,
       Category,
-      owner
+      owner._id
     );
 
     res.send(201, result);
@@ -24,8 +24,13 @@ exports.createProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const result = await ProductServcie.getAllProducts();
-    res.status(200).send(result);
+    if (req.loggedInUser) {
+      const result = await ProductServcie.getAllProducts();
+      res.status(200).send(result);
+    }
+    else {
+      res.status(400).send("user is not logged In ");
+    }
   } catch (error) {
     console.log(error);
     throw { message: error.message };
@@ -34,13 +39,9 @@ exports.getAllProducts = async (req, res) => {
 
 exports.UpdateProduct = async (req, res) => {
   try {
-    const { Title, Description, Price, Availability, Category } = req.body;
-    const userid = req.params.userid;
-    const productid = req.params.pid;
+    const { productid, Title, Description, Price, Availability, Category } = req.body;
+    const userid = req.loggedInUser;
 
-    ///verify user
-    // await helperService.verifyUser(userid);
-    ///update product
     const result = await ProductServcie.updateProduct(
       productid,
       Title,
@@ -48,7 +49,7 @@ exports.UpdateProduct = async (req, res) => {
       Price,
       Availability,
       Category,
-      userid
+      userid._id
     );
     res.status(202).send(result);
   } catch (error) {
@@ -58,14 +59,15 @@ exports.UpdateProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
   try {
-    const userid = req.params.userid;
+    console.log("in product controller")
     const pid = req.params.pid;
-    console.log("in controller");
+    const userid = req.loggedInUser;
 
-    console.log(await helperService.ProductExists(pid));
-    const result = await ProductServcie.deleteProduct(userid, pid);
+    await helperService.ProductExists(pid);
+    const result = await ProductServcie.deleteProduct(userid._id, pid);
     res.status(201).send(result);
   } catch (error) {
+    console.log(error);
     res.status(400).send({ message: error.message });
   }
 };
