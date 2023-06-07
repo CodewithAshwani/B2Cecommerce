@@ -6,8 +6,8 @@ POST {{baseurl}}user/signUp
 Content-Type: application/json
 
 {
-    "name":"vaibav v",
-    "email":"vaibhavt@gmail.com",
+    "name":"vaib",
+    "email":"vaivt@gmail.com",
     "password":"1234567",
     "role":"Consumer",
     "phoneNumber":"8930485009"

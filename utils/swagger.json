@@ -8,6 +8,9 @@
   "servers": [
     {
       "url": "https://ecommerce-production-59b6.up.railway.app/"
+    },
+    {
+      "url": "https://e-commerce-w51c.onrender.com/"
     }
   ],
   "schemes": ["http", "https"],
