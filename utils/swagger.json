@@ -322,8 +322,8 @@
 
     "cart/{userid}/getCart": {
       "get": {
-        "summary": "Get all products",
-        "tags": ["product"],
+        "summary": "Get Full cart",
+        "tags": ["cart"],
         "description": "Retrieve cart",
         "produces": ["application/json"],
         "responses": {
