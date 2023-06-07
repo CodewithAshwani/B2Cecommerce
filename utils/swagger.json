@@ -11,6 +11,9 @@
     },
     {
       "url": "https://e-commerce-w51c.onrender.com/"
+    },
+    {
+      "url": "http://localhost:3004"
     }
   ],
   "schemes": ["http", "https"],
@@ -315,6 +318,26 @@
           }
         ]
       }
+    },
+
+    "cart/{userid}/getCart": {
+      "get": {
+        "summary": "Get all products",
+        "tags": ["product"],
+        "description": "Retrieve cart",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -420,6 +443,14 @@
             },
             "required": ["product", "quantity"]
           }
+        }
+      }
+    },
+    "OrderInput": {
+      "type": "object",
+      "properties": {
+        "Address": {
+          "type": "string"
         }
       }
     }
