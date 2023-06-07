@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "E-Commerce App ",
-    "description": "API endpoints for Ecommerce",
+    "title": "E-Commerce App Endpoints",
+    "description": "API endpoints for E-commerce App",
     "version": "1.0.0"
   },
   "servers": [
