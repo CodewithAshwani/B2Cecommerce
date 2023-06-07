@@ -415,7 +415,7 @@
                 "type": "string"
               },
               "quantity": {
-                "type": "Number"
+                "type": "number"
               }
             },
             "required": ["product", "quantity"]
