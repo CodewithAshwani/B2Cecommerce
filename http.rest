@@ -1,11 +1,13 @@
 
+@baseurl=https://ecommerce-production-59b6.up.railway.app/
+###
 
-POST http://localhost:3004/user/signUp
+POST {{baseurl}}user/signUp
 Content-Type: application/json
 
 {
-    "name":"vaibhav kumar",
-    "email":"viranshk7@gmail.com",
+    "name":"vaibav v",
+    "email":"vaibhavt@gmail.com",
     "password":"1234567",
     "role":"Consumer",
     "phoneNumber":"8930485009"
