@@ -481,7 +481,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "product": {
+              "productId": {
                 "type": "string"
               },
               "quantity": {
