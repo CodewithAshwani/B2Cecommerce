@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 app.use(express.json());
 require("dotenv").config();
 const dbutils = require("./utils/Dbutils");
@@ -17,6 +18,8 @@ const PORT = process.env.PORT || 3001;
 app.get("/", () => {
   console.log("heelo world");
 });
+
+app.use(cors());
 app.use("/user", auth_routes);
 app.use("/product", product_routes);
 app.use("/cart", cart_routes);
