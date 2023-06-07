@@ -81,10 +81,10 @@ exports.UserloginViaToken = async function (req, res) {
     const token = req.headers.authorization.split(" ")[0];
     console.log(token);
     await authService.verifyToken(token);
-    return res.status(200).send({ message: "User Logged in Successfully" });
+    res.status(200).send({ message: "User Logged in Successfully" });
   } catch (err) {
     console.log(err);
-    return res.status(400).send({ message: err.message });
+    res.status(400).send({ message: err.message });
   }
 };
 
