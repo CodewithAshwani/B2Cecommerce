@@ -1,7 +1,7 @@
 
 @baseurl=https://ecommerce-production-59b6.up.railway.app/
 ###
-
+@baseurl1=https://e-commerce-w51c.onrender.com/
 POST {{baseurl}}user/signUp
 Content-Type: application/json
 

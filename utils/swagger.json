@@ -10,7 +10,7 @@
       "url": "https://ecommerce-production-59b6.up.railway.app/"
     }
   ],
-  "schemes": ["http"],
+  "schemes": ["http", "https"],
   "paths": {
     "/user/signup": {
       "post": {
