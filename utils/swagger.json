@@ -129,25 +129,33 @@
         }
       }
     },
-    "/user/login/token": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Login user with token",
-    
-        "responses": {
-          "200": {
-            "description": "login using token successfully"
-          },
-          "400": {
-            "description": "Acess denied !! Invalid token"
-          },
-          "500": {
-            "description": "Internal server error"
+    "/user/changePassword":{
+        "post":{
+          "tags":["Users"],
+          "description":" change password using old password",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [{
+            "name": "Password inputs",
+            "in": "body",
+            "description": "change password inputs ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/passwordInputs"
+            }
+          }],
+          "responses":{
+            "200":{
+              "description":"password changed succesfully"
+            },
+            "400":{
+              "description":"input is wrong"
+            }
           }
         }
-      }
     },
     "/user/logout": {
       "post": {
@@ -514,6 +522,17 @@
       "properties": {
         "token": {
           "type": "string"
+        }
+      }
+    },
+    "passwordInputs":{
+      "type":"object",
+      "properties":{
+        "oldPassword":{
+          "type":"string"
+        },
+        "newPassword":{
+          "type":"string"
         }
       }
     },

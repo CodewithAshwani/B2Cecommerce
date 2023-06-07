@@ -43,6 +43,16 @@ Content-Type: application/json
 }
 
 
+
+###
+POST  http://localhost:3004/user/changePassword
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
+
+{
+    "oldPassword":"123456",
+    "newPassword":"1234567"
+}
 ###
 POST  http://localhost:3004/user/logout
 Content-Type: application/json

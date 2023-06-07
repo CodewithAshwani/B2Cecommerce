@@ -103,6 +103,18 @@ const verifyToken = async (Token) => {
   }
 };
 
+const changePassword = async (user, oldPassword, newPassword) => {
+
+  const password = await bcrypt.compare(oldPassword, user.password);
+  if (!password) {
+    throw new Error("old password is incorrect ");
+  }
+  console.log(user.password)
+  user.password = newPassword;
+  await user.save();
+  return "Password changed successfully";
+};
+
 
 
 const logout = async (token) => {
@@ -125,6 +137,7 @@ module.exports = {
   createNewUser,
   verifyToken,
   userLogin,
+  changePassword,
   sendotp,
   logout
 };
