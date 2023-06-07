@@ -62,7 +62,7 @@ const verifyPassword = async function (password, userPassword) {
 
 const verifyUser = async function (id) {
   try {
-    console.log("in service helper");
+    console.log("in service helper ");
     const user = await User.find({ _id: id });
     if (!user) throw { message: error.message };
     return user;

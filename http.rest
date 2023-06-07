@@ -2,6 +2,9 @@
 @baseurl=https://ecommerce-production-59b6.up.railway.app/
 ###
 @baseurl1=https://e-commerce-w51c.onrender.com/
+
+###
+@baseurl2=http://localhost:3004/
 POST {{baseurl}}user/signUp
 Content-Type: application/json
 
@@ -55,7 +58,7 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.dmlyYW5zaGs3QGdtYWlsLmNvbQ.a0zjz2vMZJDmzM_deJq7pLywteR2x_vxWAmij5Qpb8Q
 
 ####
-POST http://localhost:3004/product/647efe460d0caac65fe57f85/createProduct
+POST http://localhost:3004/product/64802883b235c90335180859/createProduct
 Content-Type: application/json
 
 {
@@ -73,7 +76,8 @@ Content-Type: application/json
 
 
 ###
-PATCH  http://localhost:3004/product/647dfecfab46174dd1915f4d/UpdateProduct/647e0cc736a691edbb99eb5f
+
+PATCH  http://localhost:3004/product/64802883b235c90335180859/UpdateProduct/64802f2507d6a2961cc02192
 Content-Type: application/json
 
 {
@@ -85,7 +89,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3004/product/647dfecfab46174dd1915f4d/deleteProduct/647e188b0f974607028f7dd6
+DELETE http://localhost:3004/product/64802883b235c90335180859/deleteProduct/64802f2507d6a2961cc02192
 Content-Type: application/json
 
 ###

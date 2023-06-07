@@ -6,14 +6,14 @@ exports.createProduct = async (req, res) => {
     const owner = req.params.userid;
     console.log(owner);
     console.log("in product controller");
-    const result = await ProductServcie.createProduct({
+    const result = await ProductServcie.createProduct(
       Title,
       Description,
       Price,
       Availability,
       Category,
-      owner,
-    });
+      owner
+    );
 
     res.send(201, result);
   } catch (error) {
@@ -39,17 +39,18 @@ exports.UpdateProduct = async (req, res) => {
     const productid = req.params.pid;
 
     ///verify user
-    console.log(await helperService.verifyUser(userid));
+    // await helperService.verifyUser(userid);
     ///update product
-    await ProductServcie.updateProduct(
+    const result = await ProductServcie.updateProduct(
       productid,
       Title,
       Description,
       Price,
       Availability,
-      Category
+      Category,
+      userid
     );
-    res.status(202).send("Product Update successfully");
+    res.status(202).send(result);
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
@@ -60,10 +61,10 @@ exports.deleteProduct = async (req, res) => {
     const userid = req.params.userid;
     const pid = req.params.pid;
     console.log("in controller");
-    console.log(await helperService.verifyUser(userid));
+
     console.log(await helperService.ProductExists(pid));
-    const result = await ProductServcie.deleteProduct(pid);
-    res.status(201).send("Product deleted succesfully");
+    const result = await ProductServcie.deleteProduct(userid, pid);
+    res.status(201).send(result);
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
