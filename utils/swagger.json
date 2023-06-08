@@ -265,7 +265,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitionsProductInput"
+                  "$ref": "#/definitions/ProductInput"
                 }
               }
             }
@@ -283,7 +283,7 @@
     "/product/{pid}/deleteProduct": {
       "delete": {
         "tags": [
-          "Product"
+          "Products"
         ],
         "security": [
           {
@@ -516,6 +516,9 @@
     "ProductInput": {
       "type": "object",
       "properties": {
+      "productid":{
+        "type":"string"
+      },
         "Title": {
           "type": "string"
         },
