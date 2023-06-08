@@ -108,9 +108,10 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
 
 {
-    "productId":"64802f2507d6a2961cc02192",
-    "quantity":4
+      "productId": "64802f2507d6a2961cc02192",
+      "quantity": 4
 }
+  
 
 
 ###

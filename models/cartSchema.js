@@ -18,7 +18,7 @@ const cartSchema = new mongoose.Schema({
         required: true,
         default: 0,
       },
-      shippingcharges: {
+      shippingCharges: {
         type: Number,
         default: 40,
         required: true,
@@ -31,9 +31,9 @@ const cartSchema = new mongoose.Schema({
   ],
   subtotal: {
     type: Number,
-    default: 0,
     required: true,
   },
+
   totalAmount: {
     type: Number,
     default: 0,

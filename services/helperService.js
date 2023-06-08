@@ -41,6 +41,7 @@ const verifyUser = async function (id) {
   try {
     console.log("in service helper ");
     const user = await User.findOne({ _id: id });
+    console.log("user exisits");
     if (!user) throw { message: error.message };
     return user;
   } catch (error) {
