@@ -283,7 +283,7 @@
     "/product/{pid}/deleteProduct": {
       "delete": {
         "tags": [
-          "Product"s
+          "Product"
         ],
         "security": [
           {
