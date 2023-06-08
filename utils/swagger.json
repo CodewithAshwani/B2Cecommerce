@@ -190,7 +190,7 @@
       "/product/createProduct": {
         "post": {
           "tags": [
-            "Product"
+            "Products"
           ],
           "security": [
             {
@@ -223,7 +223,7 @@
         "get": {
           "summary": "Get all products",
           "tags": [
-            "Product"
+            "Products"
           ],
           "security": [
             {
@@ -251,7 +251,7 @@
       "/product/UpdateProduct": {
         "patch": {
           "tags": [
-            "Product"
+            "Products"
           ],
           "security": [
             {
@@ -283,7 +283,7 @@
     "/product/{pid}/deleteProduct": {
       "delete": {
         "tags": [
-          "Product"
+          "Product"s
         ],
         "security": [
           {
@@ -315,7 +315,7 @@
     "/cart/addTocart": {
       "post": {
         "tags": [
-          "Cart"
+          "Carts"
         ],
         "security": [
           {
@@ -349,7 +349,7 @@
       "get": {
         "summary": "Get full cart",
         "tags": [
-          "Cart"
+          "Carts"
         ],
         "security": [
           {
@@ -372,7 +372,7 @@
       "post": {
         "summary": "Place order",
         "tags": [
-          "Order"
+          "Orders"
         ],
         "security": [
           {
@@ -406,7 +406,7 @@
       "get": {
         "summary": "Show order",
         "tags": [
-          "Order"
+          "Orders"
         ],
         "security": [
           {
