@@ -222,6 +222,11 @@
           "tags": [
             "Product"
           ],
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
           "description": "Retrieve a list of all products",
           "responses": {
             "200": {
@@ -272,7 +277,7 @@
           }
         }
       },
-    "/product/deleteProduct": {
+    "/product/{pid}/deleteProduct": {
       "delete": {
         "tags": [
           "Product"
@@ -284,15 +289,6 @@
         ],
         "summary": "Delete product",
         "parameters": [
-          {
-            "name": "userid",
-            "in": "path",
-            "description": "User ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "pid",
             "in": "path",
@@ -324,17 +320,7 @@
           }
         ],
         "summary": "Add product to cart",
-        "parameters": [
-          {
-            "name": "userid",
-            "in": "path",
-            "description": "User ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+       
         "requestBody": {
           "description": "Product IDs",
           "required": true,
@@ -368,17 +354,7 @@
           }
         ],
         "description": "Retrieve cart",
-        "parameters": [
-          {
-            "name": "userid",
-            "in": "path",
-            "description": "Get cart from userid",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+    
         "responses": {
           "200": {
             "description": "OK"
@@ -401,17 +377,7 @@
           }
         ],
         "description": "Place order",
-        "parameters": [
-          {
-            "name": "userid",
-            "in": "path",
-            "description": "Get cart from userid",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+     
         "requestBody": {
           "description": "Place order",
           "required": true,
@@ -445,17 +411,7 @@
           }
         ],
         "description": "Show order",
-        "parameters": [
-          {
-            "name": "userid",
-            "in": "path",
-            "description": "Get cart from userid",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+      
         "responses": {
           "200": {
             "description": "Order is created and remains in pending state"

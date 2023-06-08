@@ -11,6 +11,6 @@ const { verifyToken } = require("../controllers/authController")
 router.route("/createProduct").post(verifyToken, createProduct);
 router.route("/getAllProducts").get(verifyToken, getAllProducts);
 router.route("/UpdateProduct").patch(verifyToken, UpdateProduct);
-router.route("/deleteProduct").delete(verifyToken, deleteProduct);
+router.route("/:pid/deleteProduct").delete(verifyToken, deleteProduct);
 
 module.exports = router;
