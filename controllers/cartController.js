@@ -18,16 +18,15 @@ exports.verifyUserRole = async function (req, res, next) {
 };
 
 exports.addProductToCart = async function (req, res) {
+  console.log("in controller Product");
+  const { products } = req.body;
+  const customerId = req.loggedInUser;
   try {
-    const userId = req.loggedInUser;
-    const { productId, quantity } = req.body;
-    console.log(userId, productId, quantity);
-    const result = await cartService.addToCart(userId._id, productId, quantity);
-    res
-      .status(200)
-      .send({ message: "Product added to cart successfully", result });
+    const cart = await cartService.addToCart(customerId, products);
+    res.status(200).send(cart);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error)
+    res.status(500).send({ error: 'Failed to add the products to the cart.' });
   }
 };
 
@@ -36,7 +35,7 @@ exports.getCart = async function (req, res) {
     const userId = req.loggedInUser;
     console.log("in controller");
     const result = await cartService.getCart(userId._id);
-    res.status(200).send(result);
+    res.status(200).send(`SubTotal = ${result.subtotal} ShippingCharges = ${result.shippingcharges}TotalPayableAmount = ${result.totalAmount}`);
   } catch (error) {
     console.log(error);
     throw { message: error.message };

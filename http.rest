@@ -61,14 +61,14 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY
 ####
 POST http://localhost:3004/product/createProduct
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgxNzJiY2Q2MWQ5MTk0MTM2YzljMGIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjE0MTEwLCJleHAiOjE2ODYzMDA1MTB9.kAkJdJ-euvaYhrF4m49ObLNTlPqJlG4rTlSL37s295A
 
 {
-    "Title":"cake3",
-    "Description":"cake3 is more delicious ",
-    "Price":2000,
+    "Title":"mango",
+    "Description":"mango is more delicious ",
+    "Price":20,
     "Availability":true,
-    "Category":"Dairy"
+    "Category":"fruits"
 }
 ###
 
@@ -105,15 +105,18 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY
 ###
 POST http://localhost:3004/cart/addTocart
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgxNzczZDdiNzQxMzE1YmI4M2M2ZDIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjA2NDAwLCJleHAiOjE2ODYyOTI4MDB9.0zCOOdobu8pVdCFGNa2NkfhH6tLmThB07-mo59WLOwg
 
 {
-      "productId": "64802f2507d6a2961cc02192",
+    "products":[{
+      "productId": "648195fb63360ec7537b08b7",
+      "quantity": 2
+     },{
+      "productId": "6481961363360ec7537b08bb",
       "quantity": 4
+     }]
 }
   
-
-
 ###
 GET  http://localhost:3004/cart/showCart
 Content-Type: application/json
