@@ -21,18 +21,18 @@ const cartSchema = new mongoose.Schema({
       Price: {
         type: Number,
         required: true,
-      }
-    }
+      },
+    },
   ],
   shippingcharges: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
   subtotal: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
 
   totalAmount: {
@@ -45,9 +45,6 @@ const cartSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
-
-
 
 const Cart = mongoose.model("Cart", cartSchema);
 module.exports = Cart;

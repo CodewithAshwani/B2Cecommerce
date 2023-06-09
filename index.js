@@ -16,7 +16,7 @@ const placeOrder = require("./routes/orderRoutes");
 const PORT = process.env.PORT || 3001;
 
 app.get("/", () => {
-  console.log("heelo world");
+  console.log("hello world");
 });
 
 app.use(cors());

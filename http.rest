@@ -1,51 +1,52 @@
 
 @baseurl=https://ecommerce-production-59b6.up.railway.app/
 @baseurl1=https://e-commerce-w51c.onrender.com/
-@baseurl2=http://localhost:3004/
+@baseurl2=http://localhost:3005/
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NDgwMjg4M2IyMzVjOTAzMzUxODA4NTkiLCJpYXQiOjE2ODYxNDg5MTl9.s3cA2YI29N3CAZbfcZeJCM1HFLg7zvv_w-CysjncrdA
-POST http://localhost:3004/user/signUp
+
+POST http://localhost:3005/user/signUp
 Content-Type: application/json
 
 {
-    "name":"vaibhav kumar",
-    "email":"viranshk7@gmail.com",
+    "name":"kaldharm guptaa",
+    "email":"kaldharmgupta@gmail.com",
     "password":"1234567",
-    "role":"Admin",
-    "phoneNumber":"8930485009"
+    "role":"Consumer",
+    "phoneNumber":"9315899660"
 }
 
 ###
-POST http://localhost:3004/user/generateOtp
+POST http://localhost:3005/user/generateOtp
 Content-Type: application/json
 
 {
-    "email":"viranshk7@gmail.com"
+    "email":"kaldharmgupta@gmail.com"
 }
 ####
 
-POST http://localhost:3004/user/verifyOtp
+POST http://localhost:3005/user/verifyOtp
 Content-Type: application/json
 
 {
-    "email":"viranshk7@gmail.com",
-    "otp":"177337"
+    "email":"kaldharmgupta@gmail.com",
+    "otp":"430495"
 }
 
 
 
 ###
-POST http://localhost:3004/user/login
+POST http://localhost:3005/user/login
 Content-Type: application/json
 
 {
-    "email":"viranshk7@gmail.com",
+    "email":"kaldharmgupta@gmail.com",
     "password":"1234567"
 }
 
 
 
 ###
-POST  http://localhost:3004/user/changePassword
+POST  http://localhost:3005/user/changePassword
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
 
@@ -54,40 +55,42 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY
     "newPassword":"1234567"
 }
 ###
-POST  http://localhost:3004/user/logout
+POST  http://localhost:3005/user/logout
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
+
 
 ####
-POST http://localhost:3004/product/createProduct
+POST http://localhost:3005/product/createproduct
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgxNzJiY2Q2MWQ5MTk0MTM2YzljMGIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjE0MTEwLCJleHAiOjE2ODYzMDA1MTB9.kAkJdJ-euvaYhrF4m49ObLNTlPqJlG4rTlSL37s295A
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyMTE4MjQwZmFhZDY5ZmI3NjE4ODgiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjQ1ODQ1LCJleHAiOjE2ODYzMzIyNDV9.nR6eyG03-TSUOy6uKFolEP3yxShFYJu1Ojdned2yqZ8
 
 {
-    "Title":"mango",
-    "Description":"mango is more delicious ",
+    "Title":"babycare231",
+    "Description":"babaycare  is more cheap product ",
     "Price":20,
     "Availability":true,
-    "Category":"fruits"
+    "Category":"Electronics"
+  
 }
-###
-
-
-GET http://localhost:3004/product/getAllProducts
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
-
 
 
 ###
-
-PATCH http://localhost:3004/product/UpdateProduct
+GET http://localhost:3005/product/getAllProducts
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgxZjdmOTNiZTY0MTA5ZmZhMzdlMGEiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjM5Njk5LCJleHAiOjE2ODYzMjYwOTl9.QacAVBjgVlZV55eaQZ-ciucQRWRz3Y4YCpp5fxwzghg
+
+
+
+###
+
+PATCH http://localhost:3005/product/UpdateProduct
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgxZjdmOTNiZTY0MTA5ZmZhMzdlMGEiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjM5Njk5LCJleHAiOjE2ODYzMjYwOTl9.QacAVBjgVlZV55eaQZ-ciucQRWRz3Y4YCpp5fxwzghg
 
 {
-    "Productid":"64802f2507d6a2961cc02192",
-    "Title":"cake",
+    "Productid":"648201facdb76d0224ee096a",
+    "Title":"amazing cake",
     "Description":"cake is very delicious ",
     "Price":2000,
     "Availability":true,
@@ -95,44 +98,49 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY
 }
 
 ###
-DELETE http://localhost:3004/product/deleteProduct
+DELETE http://localhost:3005/product/648201facdb76d0224ee096a/deleteProduct
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYzQwY2ZlZDBjODViZTExZGYxNTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTYwNzIzLCJleHAiOjE2ODYyNDcxMjN9.jdtAqPxmvORuV5dhrnQaRKbjrx_5KBECXAZq9AwNErE
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgxZjdmOTNiZTY0MTA5ZmZhMzdlMGEiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjM5Njk5LCJleHAiOjE2ODYzMjYwOTl9.QacAVBjgVlZV55eaQZ-ciucQRWRz3Y4YCpp5fxwzghg
 
 {
-    "ProductId":"6480cd0f2ee7fd78ae092a0b"
+    "ProductId":"648201facdb76d0224ee096a"
 }
+
+
 ###
-POST http://localhost:3004/cart/addTocart
+POST http://localhost:3005/cart/addTocart
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgxNzczZDdiNzQxMzE1YmI4M2M2ZDIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjA2NDAwLCJleHAiOjE2ODYyOTI4MDB9.0zCOOdobu8pVdCFGNa2NkfhH6tLmThB07-mo59WLOwg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyMTE4MjQwZmFhZDY5ZmI3NjE4ODgiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjQ1ODQ1LCJleHAiOjE2ODYzMzIyNDV9.nR6eyG03-TSUOy6uKFolEP3yxShFYJu1Ojdned2yqZ8
 
 {
     "products":[{
-      "productId": "648195fb63360ec7537b08b7",
-      "quantity": 2
-     },{
-      "productId": "6481961363360ec7537b08bb",
+      "productId": "648200cf0b2e54471d7d3e98",
+      "quantity": 4
+     },
+     {
+      "productId": "648205d71470395568a57957",
       "quantity": 4
      }]
 }
   
 ###
-GET  http://localhost:3004/cart/showCart
+GET  http://localhost:3005/cart/showCart
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyMTE4MjQwZmFhZDY5ZmI3NjE4ODgiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjQ1ODQ1LCJleHAiOjE2ODYzMzIyNDV9.nR6eyG03-TSUOy6uKFolEP3yxShFYJu1Ojdned2yqZ8
 
 
 
 ###
-POST http://localhost:3004/orders/placeOrder
+POST http://localhost:3005/orders/placeOrder
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyMTE4MjQwZmFhZDY5ZmI3NjE4ODgiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjQ1ODQ1LCJleHAiOjE2ODYzMzIyNDV9.nR6eyG03-TSUOy6uKFolEP3yxShFYJu1Ojdned2yqZ8
 
 {
     "Address":"gurgaon"
 }
+
+
 ###
-GET  http://localhost:3004/orders/showOrder
+GET  http://localhost:3005/orders/showOrder
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgwYWQzZGRmMzI5N2IwYjY4N2Y3MzIiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MTU4OTkxLCJleHAiOjE2ODYyNDUzOTF9.ynKhiiru4dZGg9FobpSZH1goonTCV5lnx2pqDhLErgU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyMTE4MjQwZmFhZDY5ZmI3NjE4ODgiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjg2MjQ1ODQ1LCJleHAiOjE2ODYzMzIyNDV9.nR6eyG03-TSUOy6uKFolEP3yxShFYJu1Ojdned2yqZ8

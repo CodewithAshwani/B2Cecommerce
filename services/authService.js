@@ -1,48 +1,58 @@
 const User = require("../models/userSchema");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 
-const createNewUser = async function (name, email, password, role, phoneNumber) {
+const createNewUser = async function (
+  name,
+  email,
+  password,
+  role,
+  phoneNumber
+) {
   try {
     const newUser = new User({
       name,
       email,
       phoneNumber,
       role,
-      password
+      password,
     });
     const result = await newUser.save();
     const userId = result._id;
     return userId;
   } catch (error) {
     throw {
-      message: error.message
+      message: error.message,
     };
   }
 };
 
 const sendotp = async (email, otp) => {
   try {
-    await User.updateOne({
-      email
-    }, {
-      otp
-    }, { upsert: true });
+    await User.updateOne(
+      {
+        email,
+      },
+      {
+        otp,
+      },
+      { upsert: true }
+    );
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD
+        pass: process.env.EMAIL_PASSWORD,
       },
-      debug: true
+      debug: true,
     });
 
     let mailOptions = {
       from: process.env.Email,
       to: email,
       subject: "User Verification ",
-      text: `your otp to activate your account is ${otp}`
+      text: `your otp to activate your account is ${otp}`,
     };
 
     return transporter.sendMail(mailOptions, function (error) {
@@ -61,7 +71,7 @@ const userLogin = async (email, inputPassword) => {
   console.log("In Auth login  ");
   const user = await User.findOne({
     email,
-    isActive: true
+    isActive: true,
   });
   console.log("user:  ", user);
   if (!user) {
@@ -71,13 +81,15 @@ const userLogin = async (email, inputPassword) => {
   if (!isCorrect) {
     throw new Error("Invalid credentials");
   }
-  const token = jwt.sign({
-    _id: user._id,
-    isActive: true
-  }, process.env.SECRETKEY, {
-    expiresIn: "1d"
-  }
-
+  const token = jwt.sign(
+    {
+      _id: user._id,
+      isActive: true,
+    },
+    process.env.SECRETKEY,
+    {
+      expiresIn: "1d",
+    }
   );
   console.log("token " + token);
   await User.findOneAndUpdate({ _id: user._id }, { token: token });
@@ -92,30 +104,25 @@ const verifyToken = async (Token) => {
     if (!user) {
       throw new Error("User does not exist or your account is not activated.");
     } else if (user.token !== Token) {
-
       throw new Error("Access Denied. Please login with credentials.");
     }
     return user;
   } catch (error) {
-
     console.error("Error in verifyToken:", error);
     throw error;
   }
 };
 
 const changePassword = async (user, oldPassword, newPassword) => {
-
   const password = await bcrypt.compare(oldPassword, user.password);
   if (!password) {
     throw new Error("old password is incorrect ");
   }
-  console.log(user.password)
+  console.log(user.password);
   user.password = newPassword;
   await user.save();
   return "Password changed successfully";
 };
-
-
 
 const logout = async (token) => {
   console.log("logout service");
@@ -123,22 +130,24 @@ const logout = async (token) => {
   if (!user) {
     throw new Error("User not found , please login with credential for token");
   }
-  const result = await User.findOneAndUpdate({
-    _id: user._id
-  }, {
-    token: ""
-  }, { new: true });
+  const result = await User.findOneAndUpdate(
+    {
+      _id: user._id,
+    },
+    {
+      token: "",
+    },
+    { new: true }
+  );
 
   return result;
 };
 
 module.exports = {
-
   createNewUser,
   verifyToken,
   userLogin,
   changePassword,
   sendotp,
-  logout
+  logout,
 };
-

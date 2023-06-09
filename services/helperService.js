@@ -1,7 +1,7 @@
 const User = require("../models/userSchema");
 const Product = require("../models/ProductSchema");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 const makeUserActive = async function (email) {
   console.log("In helper service");
@@ -36,7 +36,6 @@ const verifyOtp = async function (email, otp) {
   }
 };
 
-
 const verifyUser = async function (id) {
   try {
     console.log("in service helper ");
@@ -61,7 +60,6 @@ const ProductExists = async function (id) {
 };
 
 module.exports = {
-
   verifyOtp,
   makeUserActive,
   getUserfromEmail,

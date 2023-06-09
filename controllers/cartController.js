@@ -6,7 +6,7 @@ exports.verifyUserRole = async function (req, res, next) {
     const uid = req.loggedInUser;
     console.log("in controller");
     const user = await helperService.verifyUser(uid._id);
-    console.log(user.role)
+    console.log(user.role);
     if (!(user.role == "Consumer"))
       throw {
         message: error.message,
@@ -25,8 +25,8 @@ exports.addProductToCart = async function (req, res) {
     const cart = await cartService.addToCart(customerId, products);
     res.status(200).send(cart);
   } catch (error) {
-    console.log(error)
-    res.status(500).send({ error: 'Failed to add the products to the cart.' });
+    console.log(error);
+    res.status(500).send({ error: "Failed to add the products to the cart." });
   }
 };
 
@@ -35,7 +35,11 @@ exports.getCart = async function (req, res) {
     const userId = req.loggedInUser;
     console.log("in controller");
     const result = await cartService.getCart(userId._id);
-    res.status(200).send(`SubTotal = ${result.subtotal} ShippingCharges = ${result.shippingcharges}TotalPayableAmount = ${result.totalAmount}`);
+    res
+      .status(200)
+      .send(
+        `SubTotal = ${result.subtotal} ShippingCharges = ${result.shippingcharges}TotalPayableAmount = ${result.totalAmount}`
+      );
   } catch (error) {
     console.log(error);
     throw { message: error.message };

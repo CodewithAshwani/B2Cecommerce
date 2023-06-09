@@ -27,8 +27,7 @@ exports.getAllProducts = async (req, res) => {
     if (req.loggedInUser) {
       const result = await ProductServcie.getAllProducts();
       res.status(200).send(result);
-    }
-    else {
+    } else {
       res.status(400).send("user is not logged In ");
     }
   } catch (error) {
@@ -39,7 +38,8 @@ exports.getAllProducts = async (req, res) => {
 
 exports.UpdateProduct = async (req, res) => {
   try {
-    const { productid, Title, Description, Price, Availability, Category } = req.body;
+    const { productid, Title, Description, Price, Availability, Category } =
+      req.body;
     const userid = req.loggedInUser;
 
     const result = await ProductServcie.updateProduct(
@@ -59,7 +59,7 @@ exports.UpdateProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
   try {
-    console.log("in product controller")
+    console.log("in product controller");
     const pid = req.params.pid;
     const userid = req.loggedInUser;
 

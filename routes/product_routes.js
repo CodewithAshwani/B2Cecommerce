@@ -6,11 +6,12 @@ const {
   UpdateProduct,
   deleteProduct,
 } = require("../controllers/productController");
-const { verifyToken } = require("../controllers/authController")
+const { verifyToken } = require("../controllers/authController");
+
 ///according to admin
-router.route("/").post(verifyToken, createProduct);
-router.route("/").get(verifyToken, getAllProducts);
-router.route("/").patch(verifyToken, UpdateProduct);
-router.route("/:pid/").delete(verifyToken, deleteProduct);
+router.route("/createproduct").post(verifyToken, createProduct);
+router.route("/getAllProducts").get(verifyToken, getAllProducts);
+router.route("/UpdateProduct").patch(verifyToken, UpdateProduct);
+router.route("/:pid/deleteProduct").delete(verifyToken, deleteProduct);
 
 module.exports = router;

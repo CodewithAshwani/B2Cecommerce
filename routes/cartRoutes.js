@@ -11,6 +11,4 @@ const { verifyToken } = require("../controllers/authController");
 router.route("/addTocart").post(verifyToken, verifyUserRole, addProductToCart);
 router.route("/showCart").get(verifyToken, verifyUserRole, getCart);
 
-
-
 module.exports = router;
