@@ -1,6 +1,4 @@
-
-@baseurl=https://ecommerce-production-59b6.up.railway.app/
-@baseurl1=https://e-commerce-w51c.onrender.com/
+@baseurl1=https://b2cecommerce.onrender.com
 @baseurl2=http://localhost:3005/
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NDgwMjg4M2IyMzVjOTAzMzUxODA4NTkiLCJpYXQiOjE2ODYxNDg5MTl9.s3cA2YI29N3CAZbfcZeJCM1HFLg7zvv_w-CysjncrdA
 
